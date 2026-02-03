@@ -1,35 +1,488 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Game Store - تحميل الألعاب</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHATAI - تطبيق الذكاء الاصطناعي المتقدم</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* الشريط العلوي المتدحرج */
+        .header-scroll {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd93d;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd93d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            margin-top: 100px;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-section {
+            margin-bottom: 80px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* قسم الوصف */
+        .description-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .description-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffd93d;
+        }
+
+        .description-text {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd93d;
+        }
+
+        /* قسم التحميل */
+        .download-section {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .download-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: white;
+            color: #ee5a24;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .download-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* الفوتر */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* تأثيرات إضافية */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .description-section {
+                padding: 40px 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <h1>Game Store 🎮</h1>
-        <input type="text" id="search" placeholder="ابحث عن لعبة..." onkeyup="searchGames()">
+    <!-- الشريط العلوي المتدحرج -->
+    <header class="header-scroll">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">CHATAI</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#download">تحميل</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <section class="hero-section" id="home">
+            <h1 class="hero-title">CHATAI</h1>
+            <p class="hero-subtitle">ثورة الذكاء الاصطناعي بين يديك</p>
+        </section>
+
+        <!-- قسم الوصف المفصل -->
+        <section class="description-section">
+            <h2 class="description-title">اكتشف عالم الذكاء الاصطناعي المتقدم</h2>
+            <p class="description-text">
+                CHATAI هو تطبيق الذكاء الاصطناعي الأكثر تطوراً والذي يغير طريقة تفاعلك مع التكنولوجيا. 
+                يجمع بين أحدث تقنيات معالجة اللغات الطبيعية والتعلم العميق لتقديم تجربة فريدة من نوعها. 
+                سواء كنت تبحث عن مساعد ذكي للإجابة على أسئلتك، أو شريك محادثة متقدم، أو أداة إبداعية 
+                تساعدك في كتابة المحتوى والأفكار، فإن CHATAI هو الحل الأمثل لك.
+            </p>
+            <p class="description-text">
+                يتميز التطبيق بواجهة استخدام سهلة وبديهية، مما يجعله مناسباً للجميع من المبتدئين 
+                إلى المحترفين. مع دعم كامل للغة العربية والعديد من اللغات الأخرى، يمكنك التفاعل 
+                مع الذكاء الاصطناعي بلغتك الأم بكل سلاسة. كما يوفر التطبيق إمكانية العمل بدون 
+                اتصال بالإنترنت، مما يضمن لك الحصول على المساعدة في أي وقت وفي أي مكان.
+            </p>
+
+            <!-- ميزات التطبيق -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">ذكاء اصطناعي متقدم</h3>
+                    <p>تقنيات حديثة في التعلم العميق والمعالجة اللغوية لتجربة استثنائية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">محادثات طبيعية</h3>
+                    <p>تحدث مع الذكاء الاصطناعي وكأنك تتحدث مع إنسان حقيقي</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">متعدد اللغات</h3>
+                    <p>يدعم العربية والإنجليزية والعديد من اللغات العالمية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">سرعة فائقة</h3>
+                    <p>استجابة فورية ومعالجة سريعة لجميع طلباتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">خصوصية وأمان</h3>
+                    <p>حماية كاملة لبياناتك وخصوصيتك مع تشفير متقدم</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">يعمل بدون إنترنت</h3>
+                    <p>استخدم التطبيق في أي وقت حتى بدون اتصال بالإنترنت</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم التحميل -->
+        <section class="download-section" id="download">
+            <h2 class="download-title">حمل التطبيق الآن</h2>
+            <p class="download-info">جرب أقوى تطبيق ذكاء اصطناعي مجاناً</p>
+            <a href="https://apk.e-droid.net/apk/app3648287-5vrutm.apk?v=18" class="download-button" download>
+                تحميل التطبيق المجاني
+            </a>
+            <p class="download-info">حجم الملف: 25 ميجابايت | يتطلب أندرويد 5.0 أو أحدث</p>
+        </section>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2024 CHATAI - جميع الحقوق محفوظة | تصميم وتطوير فريق CHATAI</p>
+        </div>
+    </footer>
+
+    <!-- تأثيرات بصرية -->
+    <div class="floating-shapes">
+        <div class="shape" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
+        <div class="shape" style="width: 120px; height: 120px; left: 70%; animation-delay: 2s;"></div>
+        <div class="shape" style="width: 60px; height: 60px; left: 40%; animation-delay: 4s;"></div>
+        <div class="shape" style="width: 100px; height: 100px; left: 20%; animation-delay: 6s;"></div>
+        <div class="shape" style="width: 90px; height: 90px; left: 85%; animation-delay: 8s;"></div>
     </div>
-    <nav>
-        <button onclick="filterCategory('all')">الكل</button>
-        <button onclick="filterCategory('Action')">Action</button>
-        <button onclick="filterCategory('Strategy')">Strategy</button>
-        <button onclick="filterCategory('Racing')">Racing</button>
-    </nav>
-</header>
 
-<main>
-    <section id="games-list">
-        <!-- سيتم تحميل الألعاب ديناميكياً من السيرفر -->
-    </section>
-</main>
+    <script>
+        // تأثير التمرير السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<footer>
-    <p>&copy; 2026 Game Store. جميع الحقوق محفوظة.</p>
-</footer>
+        // تأثير الظهور التدريجي للعناصر
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-<script src="script.js"></script>
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // مراقبة العناصر
+        document.querySelectorAll('.feature-card, .description-section, .download-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // تأثير النبض لزر التحميل
+        setInterval(() => {
+            const downloadBtn = document.querySelector('.download-button');
+            downloadBtn.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                downloadBtn.style.transform = 'scale(1)';
+            }, 200);
+        }, 3000);
+    </script>
 </body>
 </html>
