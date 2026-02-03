@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Game Store 🎮</h1>
+        <input type="text" id="search" placeholder="ابحث عن لعبة..." onkeyup="searchGames()">
+    </header>
+
+    <section id="games-list">
+        <!-- هنا ستظهر كل الألعاب التي أضافها صاحب الموقع -->
+        <!-- مثال لبطاقات الألعاب -->
+        <div class="game-card">
+            <img src="uploads/icons/game1.png" alt="لعبة 1">
+            <h3>لعبة 1</h3>
+            <p>وصف مختصر للعبة 1</p>
+            <a href="uploads/Game1.apk" download class="download-btn">تحميل اللعبة</a>
+        </div>
+
+        <div class="game-card">
+            <img src="uploads/icons/game2.png" alt="لعبة 2">
+            <h3>لعبة 2</h3>
+            <p>وصف مختصر للعبة 2</p>
+            <a href="uploads/Game2.apk" download class="download-btn">تحميل اللعبة</a>
+        </div>
+        <!-- المزيد من الألعاب سيتم إضافتها تلقائيًا من لوحة التحكم -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
