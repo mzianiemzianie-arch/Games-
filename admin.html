@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - Game Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>لوحة التحكم لإضافة الألعاب 🎮</h1>
+    </header>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>اسم اللعبة:</label><br>
+        <input type="text" name="name" placeholder="اكتب اسم اللعبة" required><br><br>
+
+        <label>وصف اللعبة:</label><br>
+        <textarea name="description" placeholder="اكتب وصف اللعبة" required></textarea><br><br>
+
+        <label>التصنيف:</label><br>
+        <input type="text" name="category" placeholder="Action, Strategy, Racing ..."><br><br>
+
+        <label>أيقونة اللعبة:</label><br>
+        <input type="file" name="icon" accept="image/*" required><br><br>
+
+        <label>ملف اللعبة (APK):</label><br>
+        <input type="file" name="apk" accept=".apk" required><br><br>
+
+        <button type="submit">إضافة اللعبة</button>
+    </form>
+
+    <footer style="text-align:center; margin-top:30px;">
+        <p>لوحة تحكم Game Store</p>
+    </footer>
+</body>
+</html>
