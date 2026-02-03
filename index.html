@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHATAI - تطبيق الذكاء الاصطناعي المتقدم</title>
     <style>
-        :root {
-            --primary-black: #0a0a0a;
-            --secondary-black: #1a1a1a;
-            --dark-gray: #2d2d2d;
-            --light-gray: #f5f5f5;
-            --pure-white: #ffffff;
-            --off-white: #f8f9fa;
-            --accent-blue: #0066ff;
-            --accent-cyan: #00d4ff;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -23,18 +12,618 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--primary-black);
-            color: var(--pure-white);
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            color: #ffffff;
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* شريط التنقل الثابت */
-        .navbar {
+        /* الشريط العلوي المتدحرج */
+        .header-scroll {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed;
+            top: -100px;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out 0.5s forwards;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(100px);
+                opacity: 1;
+            }
+            from {
+                transform: translateY(0);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            margin-top: 120px;
+            padding: 80px 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            }
+            to {
+                text-shadow: 0 0 50px rgba(255, 255, 255, 1), 0 0 70px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 50px;
+            color: #cccccc;
+            opacity: 0.9;
+        }
+
+        /* رسم ذكاء اصطناعي */
+        .ai-visual {
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            transform-origin: left center;
+            animation: pulse-line 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* قسم الوصف */
+        .description-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 80px;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .description-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
+            animation: backgroundMove 30s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .description-title {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .description-text {
+            font-size: 1.4rem;
+            line-height: 2;
+            margin-bottom: 40px;
+            text-align: justify;
+            color: #cccccc;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* رسم شبكة عصبية */
+        .neural-network {
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .neural-layer {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .neural-layer:nth-child(1) { left: 0; }
+        .neural-layer:nth-child(2) { left: 50%; transform: translateX(-50%); }
+        .neural-layer:nth-child(3) { right: 0; }
+
+        .neuron {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ffffff, #888888);
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+            animation: neuronPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes neuronPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+            }
+            50% { 
+                transform: scale(1.3);
+                box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+            }
+        }
+
+        /* ميزات التطبيق */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+        }
+
+        .feature-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* قسم التحميل */
+        .download-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.8));
+            border-radius: 25px;
+            padding: 80px;
+            margin: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: pulseBg 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseBg {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .download-title {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            color: #000000;
+            padding: 25px 70px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .download-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(45deg, #ffffff, #eeeeee);
+        }
+
+        .download-info {
+            color: #cccccc;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* الفوتر */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .footer-text {
+            color: #cccccc;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* تأثيرات بصرية إضافية */
+        .floating-ai-elements {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .ai-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 25s infinite linear;
+            font-size: 2rem;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .description-section {
+                padding: 50px 30px;
+            }
+            
+            .download-section {
+                padding: 50px 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-visual {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        /* تأثيرات إضافية */
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        .binary-column {
+            position: absolute;
+            color: #ffffff;
+            font-family: monospace;
+            font-size: 12px;
+            animation: binaryFall 10s infinite linear;
+        }
+
+        @keyframes binaryFall {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- تأثير المطر الثنائي -->
+    <div class="binary-rain" id="binaryRain"></div>
+
+    <!-- عناصر الذكاء الاصطناعي العائمة -->
+    <div class="floating-ai-elements">
+        <div class="ai-element" style="left: 5%; animation-delay: 0s;">🤖</div>
+        <div class="ai-element" style="left: 15%; animation-delay: 3s;">🧠</div>
+        <div class="ai-element" style="left: 25%; animation-delay: 6s;">💻</div>
+        <div class="ai-element" style="left: 35%; animation-delay: 9s;">🔬</div>
+        <div class="ai-element" style="left: 45%; animation-delay: 12s;">⚡</div>
+        <div class="ai-element" style="left: 55%; animation-delay: 15s;">🤖</div>
+        <div class="ai-element" style="left: 65%; animation-delay: 18s;">🧠</div>
+        <div class="ai-element" style="left: 75%; animation-delay: 21s;">💻</div>
+        <div class="ai-element" style="left: 85%; animation-delay: 24s;">🔬</div>
+        <div class="ai-element" style="left: 95%; animation-delay: 27s;">⚡</div>
+    </div>
+
+    <!-- الشريط العلوي المتدحرج -->
+    <header class="header-scroll">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">CHATAI</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#download">تحميل</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <section class="hero-section" id="home">
+            <h1 class="hero-title">CHATAI</h1>
+            <p class="hero-subtitle">ثورة الذكاء الاصطناعي بين يديك</p>
+            
+            <!-- رسم ذكاء اصطناعي -->
+            <div class="ai-visual">
+                <div class="neural-node" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="neural-node" style="top: 20%; left: 20%;"></div>
+                <div class="neural-node" style="top: 20%; right: 20%;"></div>
+                <div class="neural-node" style="bottom: 20%; left: 20%;"></div>
+                <div class="neural-node" style="bottom: 20%; right: 20%;"></div>
+                
+                <div class="neural-connection" style="top: 20%; left: 20%; width: 60%; transform: rotate(0deg);"></div>
+                <div class="neural-connection" style="top: 50%; left: 20%; width: 60%; transform: rotate(-45deg);"></div>
+                <div class="neural-connection" style="top: 50%; left: 20%; width: 60%; transform: rotate(45deg);"></div>
+            </div>
+        </section>
+
+        <!-- قسم الوصف -->
+        <section class="description-section">
+            <h2 class="description-title">اكتشف عالم الذكاء الاصطناعي المتقدم</h2>
+            <p class="description-text">
+                CHATAI هو تطبيق الذكاء الاصطناعي الأكثر تطوراً والذي يغير طريقة تفاعلك مع التكنولوجيا. 
+                يجمع بين أحدث تقنيات معالجة اللغات الطبيعية والتعلم العميق لتقديم تجربة فريدة من نوعها. 
+                سواء كنت تبحث عن مساعد ذكي للإجابة على أسئلتك، أو شريك محادثة متقدم، أو أداة إبداعية 
+                تساعدك في كتابة المحتوى والأفكار، فإن CHATAI هو الحل الأمثل لك.
+            </p>
+            <p class="description-text">
+                يتميز التطبيق بواجهة استخدام سهلة وبديهية، مما يجعله مناسباً للجميع من المبتدئين 
+                إلى المحترفين. مع دعم كامل للغة العربية والعديد من اللغات الأخرى، يمكنك التفاعل 
+                مع الذكاء الاصطناعي بلغتك الأم بكل سلاسة. كما يوفر التطبيق إمكانية العمل بدون 
+                اتصال بالإنترنت، مما يضمن لك الحصول على المساعدة في أي وقت وفي أي مكان.
+            </p>
+
+            <!-- شبكة عصبية بصرية -->
+            <div class="neural-network">
+                <div class="neural-layer">
+                    <div class="neuron"></div>
+                    <div class="neuron"></div>
+                    <div class="neuron"></div>
+                </div>
+                <div class="neural-layer">
+                    <div class="neuron"></div>
+                    <div class="neuron"></div>
+                </div>
+                <div class="neural-layer">
+                    <div class="neuron"></div>
+                    <div class="neuron"></div>
+                    <div class="neuron"></div>
+                </div>
+            </div>
+
+            <!-- ميزات التطبيق -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">ذكاء اصطناعي متقدم</h3>
+                    <p>تقنيات حديثة في التعلم العميق والمعالجة اللغوية لتجربة استثنائية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">محادثات طبيعية</h3>
+                    <p>تحدث مع الذكاء الاصطناعي وكأنك تتحدث مع إنسان حقيقي</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">متعدد اللغات</h3>
+                    <p>يدعم العربية والإنجليزية والعديد من اللغات العالمية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">سرعة فائقة</h3>
+                    <p>استجابة فورية ومعالجة سريعة لجميع طلباتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">خصوصية وأمان</h3>
+                    <p>حماية كاملة لبياناتك وخصوصيتك مع تشفير متقدم</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">يعمل بدون إنترنت</h3>
+                    <p>استخدم التطبيق في أي وقت حتى بدون اتصال بالإنترنت</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم التحميل -->
+        <section class="download-section">
+            <h2 class="download-title">حمل التطبيق الآن</h2>
+            <p class="download-info">جرب أقوى تطبيق ذكاء اصطناعي مجاناً</p>
+            <a href="https://apk.e-droid.net/apk/app3648287-5vrutm.apk?v=18" class="download-button" download>
+                تحميل التطبيق المجاني
+            </a>
+            <p class="download-info">حجم الملف: 25 ميجابايت |             width: 100%;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             z-index: 1000;
@@ -1090,4 +1679,5 @@
     </script>
 </body>
 </html>
+
 
