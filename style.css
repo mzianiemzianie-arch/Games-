@@ -1,93 +1,53 @@
-/* ----------- عام ----------- */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
-    color: #333;
-}
+/* ---------- عام ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
+body { background: #121212; color:#fff; }
+header { background:#1f1f1f; padding:20px 10px; text-align:center; }
+header h1 { font-size:2em; margin-bottom:10px; }
+header input { padding:10px; width:50%; border-radius:5px; border:none; outline:none; }
 
-h1, h2, h3 {
-    text-align: center;
-}
+/* ---------- قائمة الفلاتر ---------- */
+nav { margin-top:15px; }
+nav button { padding:8px 15px; margin:0 5px; border:none; border-radius:5px; cursor:pointer; background:#4CAF50; color:white; transition:0.2s; }
+nav button:hover { background:#45a049; }
 
-/* ----------- صفحة الألعاب ----------- */
+/* ---------- شبكة الألعاب ---------- */
 #games-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
 }
 
+/* ---------- بطاقة اللعبة ---------- */
 .game-card {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
+    background:#1f1f1f;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+.game-card:hover { transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.7); }
 
-.game-card:hover {
-    transform: translateY(-5px);
-}
-
-.game-card img {
-    width: 100%;
-    border-radius: 10px;
-}
+.game-card img { width:100%; display:block; }
+.game-card-content { padding:15px; }
+.game-card-content h3 { font-size:1.2em; margin-bottom:10px; }
+.game-card-content p { font-size:0.9em; color:#ccc; height:40px; overflow:hidden; }
 
 .download-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+    display:block;
+    margin-top:10px;
+    text-align:center;
+    background:#4CAF50;
+    padding:10px;
+    border-radius:5px;
+    color:white;
+    text-decoration:none;
+    transition:0.2s;
 }
+.download-btn:hover { background:#45a049; }
 
-.download-btn:hover {
-    background: #45a049;
-}
+/* ---------- الفوتر ---------- */
+footer { text-align:center; padding:20px; background:#1f1f1f; margin-top:20px; font-size:0.9em; color:#aaa; }
 
-/* ----------- لوحة التحكم ----------- */
-form {
-    max-width: 500px;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-input[type="text"], textarea, input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    padding: 10px 20px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #45a049;
-}
-
-/* ----------- بحث ----------- */
-#search {
-    display: block;
-    margin: 20px auto;
-    padding: 10px;
-    width: 50%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+/* ---------- Responsive ---------- */
+@media(max-width:768px){ header input{width:80%;} }
