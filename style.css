@@ -1,53 +1,95 @@
-/* ---------- عام ---------- */
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
-body { background: #121212; color:#fff; }
-header { background:#1f1f1f; padding:20px 10px; text-align:center; }
-header h1 { font-size:2em; margin-bottom:10px; }
-header input { padding:10px; width:50%; border-radius:5px; border:none; outline:none; }
-
-/* ---------- قائمة الفلاتر ---------- */
-nav { margin-top:15px; }
-nav button { padding:8px 15px; margin:0 5px; border:none; border-radius:5px; cursor:pointer; background:#4CAF50; color:white; transition:0.2s; }
-nav button:hover { background:#45a049; }
-
-/* ---------- شبكة الألعاب ---------- */
-#games-list {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:20px;
-    padding:20px;
+:root {
+    --primary: #2563eb;
+    --secondary: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
 }
 
-/* ---------- بطاقة اللعبة ---------- */
-.game-card {
-    background:#1f1f1f;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 4px 15px rgba(0,0,0,0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    margin: 0;
+    color: var(--dark);
 }
-.game-card:hover { transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.7); }
 
-.game-card img { width:100%; display:block; }
-.game-card-content { padding:15px; }
-.game-card-content h3 { font-size:1.2em; margin-bottom:10px; }
-.game-card-content p { font-size:0.9em; color:#ccc; height:40px; overflow:hidden; }
-
-.download-btn {
-    display:block;
-    margin-top:10px;
-    text-align:center;
-    background:#4CAF50;
-    padding:10px;
-    border-radius:5px;
-    color:white;
-    text-decoration:none;
-    transition:0.2s;
+header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.download-btn:hover { background:#45a049; }
 
-/* ---------- الفوتر ---------- */
-footer { text-align:center; padding:20px; background:#1f1f1f; margin-top:20px; font-size:0.9em; color:#aaa; }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/* ---------- Responsive ---------- */
-@media(max-width:768px){ header input{width:80%;} }
+.logo { font-size: 1.5rem; font-weight: bold; }
+.logo span { color: var(--primary); }
+
+/* شريط الشعارات المتحرك */
+.logos-slider {
+    background: var(--dark);
+    color: white;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.slider-track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+}
+
+.slider-track span {
+    margin: 0 40px;
+    font-weight: bold;
+}
+
+@keyframes scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* بطاقات المنتجات */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.card:hover { transform: translateY(-10px); }
+
+.card img { width: 100%; height: 200px; object-fit: cover; }
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy {
+    background: #10b981;
+    width: 80%;
+}
+
+.btn-buy:hover { background: #059669; }
