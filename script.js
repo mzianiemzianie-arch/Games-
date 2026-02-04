@@ -1,48 +1,47 @@
-// ----------- بيانات الألعاب (مثال أولي، لاحقًا يمكن جلبها من السيرفر) -----------
-const gamesData = [
-    {name:"لعبة أكشن", desc:"وصف لعبة أكشن ممتعة", icon:"uploads/icon1.png", file:"uploads/game1.apk", category:"Action"},
-    {name:"لعبة سباق", desc:"وصف لعبة سباق سريعة", icon:"uploads/icon2.png", file:"uploads/game2.apk", category:"Racing"},
-    {name:"لعبة استراتيجية", desc:"وصف لعبة استراتيجية ممتعة", icon:"uploads/icon3.png", file:"uploads/game3.apk", category:"Strategy"},
-    {name:"لعبة أخرى", desc:"وصف لعبة متنوعة", icon:"uploads/icon4.png", file:"uploads/game4.apk", category:"Action"},
+const productForm = document.getElementById('productForm');
+const productsGrid = document.getElementById('productsGrid');
+
+// مصفوفة لتخزين المنتجات (مؤقتاً)
+let products = [
+    { name: "ساعة ذكية", price: 7500, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" },
+    { name: "سماعات لاسلكية", price: 4200, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" }
 ];
 
-const gamesList = document.getElementById('games-list');
-
-// عرض الألعاب على الصفحة
-function displayGames(games = gamesData){
-    gamesList.innerHTML = '';
-    games.forEach(game => {
-        const card = document.createElement('div');
-        card.classList.add('game-card');
-        card.innerHTML = `
-            <img src="${game.icon}" alt="${game.name}">
-            <div class="game-card-content">
-                <h3>${game.name}</h3>
-                <p>${game.desc}</p>
-                <a href="${game.file}" class="download-btn" download>تحميل اللعبة</a>
+// وظيفة لعرض المنتجات
+function displayProducts() {
+    productsGrid.innerHTML = '';
+    products.forEach((product, index) => {
+        productsGrid.innerHTML += `
+            <div class="card">
+                <img src="${product.img}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p style="color: #2563eb; font-weight: bold;">${product.price} دج</p>
+                <button onclick="buyProduct('${product.name}')" class="btn-primary btn-buy">شراء الآن</button>
             </div>
         `;
-        card.dataset.category = game.category;
-        gamesList.appendChild(card);
     });
 }
 
-// البحث
-function searchGames(){
-    const input = document.getElementById('search').value.toLowerCase();
-    const filtered = gamesData.filter(game => game.name.toLowerCase().includes(input));
-    displayGames(filtered);
+// إضافة منتج جديد
+productForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const newProduct = {
+        name: document.getElementById('pName').value,
+        price: document.getElementById('pPrice').value,
+        img: document.getElementById('pImg').value
+    };
+
+    products.push(newProduct);
+    displayProducts();
+    productForm.reset();
+    alert("تم نشر منتجك بنجاح في DZ MARCHI!");
+});
+
+// وظيفة الشراء
+function buyProduct(name) {
+    alert(`شكراً لثقتك! تم إرسال طلب شراء لمنتج: ${name}. سنتواصل معك قريباً.`);
 }
 
-// الفلترة حسب التصنيف
-function filterCategory(category){
-    if(category === 'all'){
-        displayGames();
-    } else {
-        const filtered = gamesData.filter(game => game.category === category);
-        displayGames(filtered);
-    }
-}
-
-// عند تحميل الصفحة
-window.onload = () => { displayGames(); }
+// تشغيل العرض عند التحميل
+displayProducts();
