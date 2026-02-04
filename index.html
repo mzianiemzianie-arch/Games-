@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DZ MARCHI | متجرك الجزائري</title>
+    <title>DZ MARCHI | المتجر الجزائري المتكامل</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,46 +11,65 @@
     <header>
         <nav>
             <div class="logo">DZ <span>MARCHI</span></div>
-            <ul>
-                <li><a href="#shop">المتجر</a></li>
-                <li><a href="#sell">بع منتجك</a></li>
-            </ul>
+            <div id="authHeader">
+                <button id="loginNavBtn" onclick="toggleModal('authModal')">تسجيل الدخول</button>
+                <div id="userMenu" class="hidden">
+                    <span id="welcomeName"></span>
+                    <button onclick="logout()" class="btn-logout">خروج</button>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <div class="logos-slider">
-        <div class="slider-track">
-            <span>🔥 تخفيضات هائلة</span>
-            <span>🚀 توصيل سريع</span>
-            <span>💎 جودة عالية</span>
-            <span>🇩🇿 صنع في الجزائر</span>
-            <span>🔥 تخفيضات هائلة</span>
-            <span>🚀 توصيل سريع</span>
-            <span>💎 جودة عالية</span>
-            <span>🇩🇿 صنع في الجزائر</span>
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>🇩🇿 أهلاً بكم في DZ MARCHI</span>
+            <span>🔥 أفضل الأسعار</span>
+            <span>📦 توصيل 58 ولاية</span>
+            <span>💬 دردشة مباشرة مع الباعة</span>
         </div>
     </div>
 
     <main>
-        <section id="sell" class="form-section">
-            <h2>عرض منتج جديد للبيع</h2>
-            <form id="productForm">
-                <input type="text" id="pName" placeholder="اسم المنتج" required>
-                <input type="number" id="pPrice" placeholder="السعر (دج)" required>
-                <input type="text" id="pImg" placeholder="رابط صورة المنتج (URL)" required>
-                <button type="submit" class="btn-primary">نشر المنتج الآن</button>
-            </form>
+        <section id="add-product" class="card-glass">
+            <h3>عرض منتج للبيع</h3>
+            <div class="form-group">
+                <input type="text" id="pName" placeholder="اسم المنتج">
+                <input type="number" id="pPrice" placeholder="السعر (دج)">
+                <input type="text" id="pImg" placeholder="رابط صورة المنتج">
+                <button onclick="uploadProduct()" class="btn-main">نشر الآن</button>
+            </div>
         </section>
 
-        <hr>
-
         <section id="shop">
-            <h2>المنتجات المتوفرة</h2>
-            <div id="productsGrid" class="grid">
-                </div>
+            <h2 class="section-title">المنتجات المعروضة</h2>
+            <div id="productsGrid" class="grid"></div>
         </section>
     </main>
 
+    <div id="authModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>إنشاء حساب / دخول</h3>
+            <input type="email" id="email" placeholder="البريد الإلكتروني">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            <input type="text" id="phone" placeholder="رقم الهاتف">
+            <button onclick="handleAuth()" class="btn-main">تأكيد</button>
+            <button onclick="toggleModal('authModal')" class="btn-close">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="chatWindow" class="chat-container hidden">
+        <div class="chat-header">دردشة DZ MARCHI <button onclick="toggleModal('chatWindow')">X</button></div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="msgInput" placeholder="اكتب رسالة...">
+            <button onclick="sendMessage()">إرسال</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
