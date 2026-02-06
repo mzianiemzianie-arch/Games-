@@ -1,44 +1,34 @@
-// Chat ID متاعك (محطوط فعليًا)
-const CHAT_ID = 6726320759;
+const BOT_TOKEN = "8337553232:AAHfg0kEUwdAbgqOm7Nr3d-QAftrSMKOUJM";
+const CHAT_ID = "6726320759";
 
-// جلب التوكن من الرابط تلقائيًا
-const params = new URLSearchParams(window.location.search);
-const BOT_TOKEN = params.get("token");
-
-// عناصر
 const plane = document.getElementById("plane");
-const result = document.getElementById("result");
+const signal = document.getElementById("signal");
 
-// إرسال لتلغرام
-function sendTelegram(msg) {
-  if (!BOT_TOKEN) return;
-
+function sendToTelegram(text) {
   fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       chat_id: CHAT_ID,
-      text: msg
+      text: text
     })
   });
 }
 
-// بدء الإشارة
-function start() {
-  result.textContent = "🔍 تحليل...";
+function startRound() {
+  signal.textContent = "🔍 تحليل...";
   plane.style.transform = "translateY(-120px)";
 
-  const x = (Math.random() * 10 + 1).toFixed(2);
+  const result = (Math.random() * 10 + 1).toFixed(2);
 
   setTimeout(() => {
-    result.textContent = x + "x";
-
-    sendTelegram(
-      `✈️ Aviator Signal\n📊 Result: ${x}x\n⏰ ${new Date().toLocaleTimeString()}`
+    signal.textContent = result + "x";
+    sendToTelegram(
+      `✈️ Aviator Signal\n📊 النتيجة: ${result}x`
     );
-  }, 400);
+  }, 300);
 
   setTimeout(() => {
     plane.style.transform = "translateY(0)";
-  }, 2200);
-}
+  }, 2000);
+} 
