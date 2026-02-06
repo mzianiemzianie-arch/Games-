@@ -1,229 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>توقعات طائرة متقدمة - محاكاة ذكية</title>
-  <style>
-    body {
-      font-family: 'Tajawal', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0d001a, #1a0033, #330066);
-      color: #e0d4ff;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    .container {
-      max-width: 780px;
-      margin: 0 auto;
-      background: rgba(15, 5, 45, 0.82);
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow: 0 12px 40px rgba(100,0,200,0.5);
-      backdrop-filter: blur(8px);
-    }
-    h1 { text-align:center; color:#a78bfa; text-shadow:0 0 15px #a78bfa88; margin-bottom:8px; }
-    .subtitle { text-align:center; color:#ffdd57; font-size:1.15rem; margin-bottom:20px; }
-
-    .mode-select {
-      display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:20px 0;
-    }
-    .mode-btn {
-      padding:10px 18px; border-radius:30px; cursor:pointer; font-weight:bold; transition:all 0.3s;
-      background:#4a148c; color:white; border:2px solid #7e57c2;
-    }
-    .mode-btn.active { background:#7e57c2; border-color:#d1c4e9; transform:scale(1.08); }
-
-    .predict-box {
-      background:rgba(126,87,194,0.18); border:2px dashed #9575cd; border-radius:16px;
-      padding:20px; text-align:center; margin:25px 0;
-    }
-    .predict-number {
-      font-size:4.5rem; font-weight:900; color:#d1c4e9; text-shadow:0 0 25px #d1c4e9aa;
-      margin:5px 0 15px;
-    }
-    button.main-btn {
-      background:linear-gradient(90deg, #7e57c2, #ab47bc); color:white; border:none;
-      padding:14px 32px; font-size:1.25rem; border-radius:50px; cursor:pointer;
-      margin:10px; transition:all 0.3s; box-shadow:0 6px 20px rgba(171,71,188,0.5);
-    }
-    button.main-btn:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(171,71,188,0.7); }
-
-    .history {
-      background:rgba(0,0,0,0.45); border-radius:14px; padding:16px; min-height:200px;
-      margin:25px 0; overflow-y:auto; max-height:260px; display:grid; grid-template-columns:repeat(auto-fill, minmax(80px,1fr)); gap:8px;
-    }
-    .history-item {
-      padding:10px; border-radius:10px; font-weight:bold; text-align:center; font-size:1.1rem;
-    }
-    .low {background:#2e7d32;} .mid {background:#f57c00;} .high {background:#d32f2f;} .veryhigh {background:#8e24aa;}
-
-    .stats {display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:15px; margin:25px 0;}
-    .stat-card {
-      background:rgba(255,255,255,0.07); padding:14px; border-radius:12px; text-align:center;
-      border:1px solid #9575cd44;
-    }
-    .stat-title {font-size:0.95rem; color:#ce93d8;}
-    .stat-value {font-size:1.6rem; font-weight:bold;}
-
-    .advice {margin-top:20px; padding:14px; border-radius:10px; font-size:1.05rem; line-height:1.5;}
-    .safe   {background:rgba(76,175,80,0.2); border:1px solid #81c784;}
-    .risky  {background:rgba(244,67,54,0.2); border:1px solid #e57373;}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviator Bot Demo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app">
+    <h1>✈️ Aviator Bot</h1>
 
-<div class="container">
-  <h1>محاكاة توقعات الطائرة الذكية</h1>
-  <div class="subtitle">محاكاة ذكية متقدمة</div>
+    <div id="plane">✈️</div>
 
-  <div class="mode-select">
-    <div class="mode-btn active" data-mode="conservative">محافظ (1.3–2.2×)</div>
-    <div class="mode-btn" data-mode="balanced">متوازن (1.8–4×)</div>
-    <div class="mode-btn" data-mode="aggressive">جريء (>5× مطارد)</div>
-    <div class="mode-btn" data-mode="streak">صياد الـ streaks</div>
+    <div class="info">
+      <p>الإشارة المتوقعة:</p>
+      <h2 id="signal">—</h2>
+    </div>
+
+    <button onclick="startRound()">بدء الجولة</button>
   </div>
 
-  <div class="predict-box">
-    <div style="font-size:1.3rem; margin-bottom:10px;">التوقع القادم</div>
-    <div class="predict-number" id="prediction">—</div>
-    <button class="main-btn" onclick="generatePrediction()">توقع جديد</button>
-    <button class="main-btn" onclick="autoGenerate(10)">محاكاة 10 جولات سريعة</button>
-  </div>
-
-  <div class="stats">
-    <div class="stat-card">
-      <div class="stat-title">متوسط آخر 30</div>
-      <div class="stat-value" id="avg">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">نسبة <2×</div>
-      <div class="stat-value" id="lowPct">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">أعلى ×</div>
-      <div class="stat-value" id="maxx">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">أطول streak <1.5×</div>
-      <div class="stat-value" id="coldStreak">—</div>
-    </div>
-  </div>
-
-  <div class="history" id="history"></div>
-
-  <div class="advice" id="adviceBox">اضغط "توقع جديد" لبدء المحاكاة الذكية...</div>
-</div>
-
-<script>
-  let history = [];
-  let currentMode = "conservative";
-
-  document.querySelectorAll('.mode-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentMode = btn.dataset.mode;
-    });
-  });
-
-  function realisticCrash() {
-    const r = Math.random();
-    if      (r < 0.48) return 1 + Math.random() * 1;          // ~1.0–2.0    48%
-    else if (r < 0.78) return 2 + Math.random() * 3;          // ~2–5        30%
-    else if (r < 0.925) return 5 + Math.random() * 8;         // ~5–13       14.5%
-    else if (r < 0.98) return 13 + Math.random() * 37;        // ~13–50      5.5%
-    else return 50 + Math.random() * 950;                      // >50 نادر ~2%
-  }
-
-  function getBiasedCrash(mode) {
-    let val = realisticCrash();
-    if (mode === "conservative") {
-      if (Math.random() < 0.75) val = Math.min(val, 1 + Math.random()*2.5);
-    } else if (mode === "aggressive") {
-      if (Math.random() < 0.4) val *= (1.5 + Math.random()*2);
-    } else if (mode === "streak") {
-      const last5 = history.slice(0,5).map(Number);
-      const avgLast = last5.length ? last5.reduce((a,b)=>a+b,0)/last5.length : 2;
-      if (avgLast < 1.6 && Math.random()<0.65) val = 3 + Math.random()*12; // بعد cold → hot محتمل
-      if (avgLast > 8 && Math.random()<0.5) val = 1 + Math.random()*1.8;   // بعد hot → crash محتمل
-    }
-    return Number(val.toFixed(2));
-  }
-
-  function classify(x) {
-    if (x < 1.5) return "low";
-    if (x < 3.5) return "mid";
-    if (x < 10)  return "high";
-    return "veryhigh";
-  }
-
-  function updateStats() {
-    if (!history.length) return;
-
-    const nums = history.map(Number);
-    const avg = (nums.reduce((a,b)=>a+b,0) / nums.length).toFixed(2);
-    const maxx = Math.max(...nums).toFixed(2);
-    const lowCount = nums.filter(n=>n<2).length;
-    const lowPct = ((lowCount / nums.length)*100).toFixed(0) + "%";
-
-    let cold = 0, maxCold = 0;
-    for (let v of nums) {
-      if (v < 1.5) { cold++; maxCold = Math.max(maxCold, cold); }
-      else cold = 0;
-    }
-
-    document.getElementById("avg").textContent     = avg;
-    document.getElementById("maxx").textContent    = maxx;
-    document.getElementById("lowPct").textContent  = lowPct;
-    document.getElementById("coldStreak").textContent = maxCold;
-  }
-
-  function addHistory(val) {
-    history.unshift(val);
-    if (history.length > 60) history.pop();
-
-    const cont = document.getElementById("history");
-    cont.innerHTML = "";
-    history.forEach(v => {
-      const el = document.createElement("div");
-      el.className = `history-item ${classify(v)}`;
-      el.textContent = `×${v}`;
-      cont.appendChild(el);
-    });
-
-    updateStats();
-  }
-
-  function getAdvice(val, mode) {
-    if (val < 1.4) return {text:"كان crash سريع جدًا... الوضع بارد حاليًا", cls:"risky"};
-    if (val > 8)   return {text:"× كبير! الـ streak الساخن ممكن يستمر أو ينتهي فجأة", cls:"risky"};
-    
-    if (mode === "conservative") return {text:"الوضع مناسب للخروج المبكر 1.4–1.9×", cls:"safe"};
-    if (mode === "aggressive")   return {text:"حاول مطاردة ×8+ لكن بحذر", cls:"risky"};
-    return {text:"الوضع متوازن • 2–4× منطقي حاليًا", cls:"safe"};
-  }
-
-  function generatePrediction() {
-    const val = getBiasedCrash(currentMode);
-    addHistory(val);
-
-    document.getElementById("prediction").textContent = val;
-
-    const adv = getAdvice(val, currentMode);
-    const box = document.getElementById("adviceBox");
-    box.textContent = adv.text;
-    box.className = "advice " + adv.cls;
-  }
-
-  function autoGenerate(count) {
-    for(let i=0; i<count; i++) {
-      setTimeout(() => generatePrediction(), i * 300);
-    }
-  }
-
-  // بداية بـ 15 جولة
-  for(let i=0; i<15; i++) addHistory(realisticCrash().toFixed(2));
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
