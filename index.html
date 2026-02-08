@@ -1,60 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>2D Platformer True Camera</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HATV - أفلام ومسلسلات وقنوات مباشرة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      color: #f0f0f0;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    
+    .logo {
+      font-size: 4.2rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    
+    .slogan {
+      font-size: 1.5rem;
+      color: #d0d0ff;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+    
+    .feature-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.35s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: rgba(255,107,107,0.4);
+    }
+    
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: #ff8e53;
+    }
+    
+    .feature-title {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    
+    .gallery {
+      margin: 80px 0;
+      text-align: center;
+    }
+    
+    .gallery h2 {
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gallery h2:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+      border-radius: 2px;
+    }
+    
+    .screenshots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .phone-frame {
+      position: relative;
+      width: 320px;
+      height: 640px;
+      background: #000;
+      border-radius: 48px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+      border: 12px solid #111;
+      transition: transform 0.4s ease;
+    }
+    
+    .phone-frame:hover {
+      transform: scale(1.08) rotate(2deg);
+    }
+    
+    .phone-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .download-section {
+      padding: 100px 0 120px;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(48,43,99,0.4), rgba(15,12,41,0.8));
+    }
+    
+    .download-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 60px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 999px;
+      text-decoration: none;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 15px 35px rgba(255,75,43,0.4);
+      z-index: 1;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-8px) scale(1.08);
+      box-shadow: 0 30px 60px rgba(255,75,43,0.6);
+    }
+    
+    .download-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+    
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.7s;
+      z-index: -1;
+    }
+    
+    .download-btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn-ripple {
+      position: absolute;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.8s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #aaa;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+  </style>
 </head>
 <body>
 
-<div id="game">
-  <div id="world">
-    <div id="player"></div>
+  <header>
+    <div class="container">
+      <h1 class="logo">HATV</h1>
+      <p class="slogan">كل الأفلام والمسلسلات والبرامج وقنوات البث المباشر في تطبيق واحد</p>
+    </div>
+  </header>
 
-    <!-- أرض -->
-    <div class="ground" style="left:0;width:800px"></div>
-    <div class="ground" style="left:900px;width:800px"></div>
-    <div class="ground" style="left:1800px;width:900px"></div>
+  <section class="container">
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <h3 class="feature-title">مكتبة أفلام ضخمة</h3>
+        <p>آلاف الأفلام العربية والأجنبية بجودة عالية وبدون إعلانات مزعجة</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📺</div>
+        <h3 class="feature-title">قنوات مباشرة</h3>
+        <p>شاهد قنوات رياضية، أفلام، أطفال، وثائقيات وأخبار بث مباشر 24/7</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🍿</div>
+        <h3 class="feature-title">مسلسلات وبرامج</h3>
+        <p>أحدث المسلسلات التركية، الكورية، الأمريكية والعربية مع الترجمة</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- منصات -->
-    <div class="platform" style="left:500px;bottom:220px"></div>
-    <div class="platform" style="left:1200px;bottom:260px"></div>
-    <div class="platform" style="left:2000px;bottom:180px"></div>
+  <section class="gallery container">
+    <h2>شاهد بعض لقطات التطبيق</h2>
+    <div class="screenshots">
+      <div class="phone-frame">
+        <img src="https://cdn.dribbble.com/userupload/46273799/file/c1496dd373cbf559223c122895410e54.jpg" alt="HATV - واجهة رئيسية مع بوسترات أفلام جذابة">
+      </div>
+      <div class="phone-frame">
+        <img src="https://s.tmimgcdn.com/scr/1200x750/519200/cinemore-movie-streaming-mobile-app-design-template_519271-original.jpg" alt="HATV - صفحة الأفلام والتصنيفات الحديثة">
+      </div>
+      <div class="phone-frame">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/0973d0145850337.66c76aaf5fa8d.png" alt="HATV - عرض أفلام ومسلسلات عصري dark mode">
+      </div>
+    </div>
+  </section>
 
-    <!-- فخاخ -->
-    <div class="trap" style="left:750px"></div>
-    <div class="trap move" style="left:1500px"></div>
-  </div>
-</div>
+  <section class="download-section">
+    <div class="container">
+      <h2 style="font-size: 3rem; margin-bottom: 50px;">حمل التطبيق الآن مجاناً</h2>
+      
+      <a href="https://apk.e-droid.net/apk/app3648287-5vrutm.apk?v=18" 
+         class="download-btn" 
+         id="downloadBtn">
+        <span>تحميل HATV</span>
+        <span style="font-size: 2.2rem;">↓</span>
+      </a>
+      
+      <p style="margin-top: 30px; font-size: 1.2rem; opacity: 0.9;">
+        الإصدار الأخير • آمن • بدون إعلانات داخل التطبيق
+      </p>
+    </div>
+  </section>
 
-<!-- D-PAD -->
-<div id="dpad">
-  <button id="up">▲</button>
-  <div class="row">
-    <button id="left">◀</button>
-    <button id="right">▶</button>
-  </div>
-</div>
+  <footer>
+    <p>© 2026 HATV - جميع الحقوق محفوظة</p>
+  </footer>
 
-<div id="overlay">GAME OVER</div>
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const ripple = document.createElement('span');
+      ripple.classList.add('btn-ripple');
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 800);
+    });
+  </script>
 
-<script src="script.js"></script>
 </body>
-</html>
-    <script  src="./script.js"></script>
-
-  </body>
-  
-</html>
+        </html>
