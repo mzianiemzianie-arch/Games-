@@ -3,116 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DREM CHAT - AI Core</title>
+    <meta name="description" content="Shoplio - سوق إلكتروني ممتع يجمع أجمل المنتجات! سيفتح قريباً ✨">
+    <title>Shoplio • سيفتح قريباً بمنتجات رائعة!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;700;900&family=Orbitron:wght@700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --primary: #ff00cc;
+        }
         
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
         }
         
-        body {
-            background: #0a0520;
-            overflow: hidden;
-            font-family: 'Cairo', sans-serif;
+        .hero-bg {
+            background: linear-gradient(135deg, #6b00ff 0%, #ff00cc 100%);
+            animation: gradientShift 15s ease infinite;
         }
         
-        /* Video Intro - أبيض */
-        #video-intro {
-            position: fixed;
-            inset: 0;
-            background: #ffffff;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            overflow: hidden;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
-        #video-intro.hide {
-            opacity: 0;
-            pointer-events: none;
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
         
-        /* Video wrapper */
-        .video-wrapper {
-            position: relative;
-            width: 50%;
-            max-width: 400px;
-            height: 0;
-            padding-bottom: 74.138%;
-            pointer-events: none;
-            user-select: none;
-            overflow: hidden;
-            z-index: 10;
+        .bounce {
+            animation: bounce 2s infinite;
         }
         
-        .video-wrapper iframe {
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 50px -12px rgb(249 115 22);
+        }
+        
+        .confetti {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            pointer-events: none;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 4s linear infinite;
         }
         
-        /* طبقة لمنع أي تفاعل مع الفيديو */
-        .video-wrapper::after {
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: transparent;
-            pointer-events: all;
-            z-index: 20;
+            width: 0;
+            height: 3px;
+            bottom: -2px;
+            left: 0;
+            background-color: #fff;
+            transition: all 0.3s;
         }
         
-        /* App Container */
-        #app {
-            position: fixed;
-            inset: 0;
-            background: #0a0520;
-            opacity: 0;
-            transition: opacity 1s ease;
-            z-index: 100;
-        }
-        
-        #app.show {
-            opacity: 1;
-        }
-        
-        #app iframe {
+        .nav-link:hover:after {
             width: 100%;
-            height: 100%;
-            border: none;
+        }
+        
+        .product-badge {
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
     </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-white font-sans overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="bg-black/80 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-pink-500/50 floating">
+                    🛒
+                </div>
+                <h1 class="text-4xl font-bold tracking-tighter" style="font-family: 'Playfair Display', serif;">
+                    Shoplio
+                </h1>
+                <span class="text-xs bg-white/10 text-white px-3 py-1 rounded-3xl font-medium mt-1">beta</span>
+            </div>
 
-    <!-- Video Intro Screen - أبيض -->
-    <div id="video-intro">
-        <div class="video-wrapper">
-            <div style="position:relative; width:100%; height:0px; padding-bottom:148.276%">
-                <iframe allow="autoplay; fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/w14f4q?autoplay=1&muted=1&nocontrols=1" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; pointer-events: none;"></iframe>
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-8 text-lg">
+                <a href="#" onclick="fakeClick()" class="nav-link text-white/90 hover:text-white font-medium">الرئيسية</a>
+                <a href="#" onclick="fakeClick()" class="nav-link text-white/90 hover:text-white font-medium">المنتجات</a>
+                <a href="#" onclick="fakeClick()" class="nav-link text-white/90 hover:text-white font-medium">العروض</a>
+                <a href="#" onclick="fakeClick()" class="nav-link text-white/90 hover:text-white font-medium">المدونة</a>
+                <a href="#" onclick="fakeClick()" class="nav-link text-white/90 hover:text-white font-medium">من نحن</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Search -->
+                <div onclick="fakeClick()" class="hidden sm:flex items-center bg-white/10 hover:bg-white/20 px-5 py-3 rounded-3xl text-sm font-medium cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i>
+                    ابحث عن منتج مميز...
+                </div>
+
+                <!-- Cart -->
+                <button onclick="fakeClick()" class="relative flex items-center justify-center w-12 h-12 bg-white/10 hover:bg-white/20 rounded-3xl text-2xl">
+                    🛍️
+                    <span class="absolute -top-1 -right-1 bg-orange-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">9+</span>
+                </button>
+
+                <!-- Join Waitlist -->
+                <button onclick="showWaitlistModal()" 
+                        class="bg-white text-black font-bold px-8 py-4 rounded-3xl flex items-center gap-2 hover:scale-105 active:scale-95 shadow-xl shadow-pink-500/30">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>انضم للقائمة الانتظارية</span>
+                </button>
+
+                <!-- Mobile menu -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-black/95 border-t border-white/10 px-6 py-8">
+            <div class="flex flex-col gap-6 text-xl">
+                <a href="#" onclick="fakeClick()" class="py-3">الرئيسية</a>
+                <a href="#" onclick="fakeClick()" class="py-3">المنتجات</a>
+                <a href="#" onclick="fakeClick()" class="py-3">العروض الخارقة</a>
+                <a href="#" onclick="fakeClick()" class="py-3">المدونة المرحة</a>
+                <div class="pt-6 border-t border-white/10">
+                    <button onclick="showWaitlistModal()" class="w-full bg-gradient-to-r from-pink-500 to-violet-500 py-6 rounded-3xl text-xl font-bold">🚀 انضم الآن واستلم خصم 30% عند الافتتاح!</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - Big Announcement -->
+    <header class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <!-- Confetti Container -->
+        <div id="confetti" class="absolute inset-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8 pt-12 md:pt-0">
+                <!-- Big badge -->
+                <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-xl text-white text-sm font-bold px-8 py-4 rounded-3xl border border-white/30">
+                    <div class="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                    قريباً جداً • ١٥ أبريل ٢٠٢٦
+                    <i class="fa-solid fa-fire text-orange-400"></i>
+                </div>
+
+                <h1 class="text-7xl md:text-8xl font-black leading-none tracking-tighter" style="font-family: 'Playfair Display', serif;">
+                    Shoplio
+                </h1>
+                
+                <p class="text-5xl md:text-6xl font-semibold leading-none text-white/90">
+                    سوق إلكتروني<br>مليء بالمتعة!
+                </p>
+
+                <!-- Announcement -->
+                <div class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-3xl p-8 max-w-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-6xl">🎉</span>
+                        <div>
+                            <h2 class="text-4xl font-bold">سيفتح قريباً!</h2>
+                            <p class="text-2xl text-white/80">بمنتجات رائعة، عروض مجنونة، وتجربة تسوق لن تنساها أبداً ✨</p>
+                        </div>
+                    </div>
+                    <div class="text-lg flex items-center gap-2 text-white/70">
+                        <i class="fa-solid fa-gift"></i>
+                        <span>أول ١٠٠٠ زائر يحصلون على خصم ٥٠٪ + هدية مجانية!</span>
+                    </div>
+                </div>
+
+                <!-- Short description -->
+                <div class="text-2xl text-white/80 max-w-md leading-relaxed">
+                    مرحباً بك في <span class="text-white font-bold">Shoplio</span> — 
+                    السوق الإلكتروني الذي يجمع بين المتعة والتسوق الذكي! 
+                    اكتشف منتجات فريدة من كل العالم، اضحك، استمتع، واشترِ بكل ثقة ❤️
+                </div>
+
+                <!-- CTA -->
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="launchFireworks()" 
+                            class="bg-white text-black text-2xl font-bold px-12 py-6 rounded-3xl flex items-center gap-3 hover:shadow-2xl hover:shadow-orange-400">
+                        <span>أنا جاهز للتسوق الممتع!</span>
+                        <i class="fa-solid fa-rocket text-3xl"></i>
+                    </button>
+                    
+                    <button onclick="showWaitlistModal()" 
+                            class="border-2 border-white/70 hover:border-white text-2xl font-medium px-10 py-6 rounded-3xl flex items-center gap-3">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>أخطرني عند الافتتاح</span>
+                    </button>
+                </div>
+
+                <!-- Trust signals -->
+                <div class="flex items-center gap-8 text-sm">
+                    <div class="flex -space-x-6">
+                        <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-xl ring-4 ring-violet-500">🇩🇿</div>
+                        <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-xl ring-4 ring-pink-500">🇫🇷</div>
+                        <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-xl ring-4 ring-orange-500">🇹🇷</div>
+                    </div>
+                    <p class="text-white/70 text-lg">أكثر من <span class="font-bold text-white">٤٢٬٨٥٧</span> شخص ينتظرون الافتتاح!</p>
+                </div>
+            </div>
+
+            <!-- Right side visual -->
+            <div class="relative hidden md:flex justify-center items-center">
+                <div class="relative w-96 h-96">
+                    <!-- Big shopping bag -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-white to-orange-300 rounded-3xl rotate-12 shadow-2xl flex items-center justify-center text-[180px] floating">
+                        🛍️
+                    </div>
+                    
+                    <!-- Floating products -->
+                    <div class="absolute -top-8 -left-8 bg-white text-black text-6xl p-6 rounded-3xl shadow-xl rotate-[-15deg] card-hover">📱</div>
+                    <div class="absolute top-12 -right-12 bg-white text-black text-6xl p-6 rounded-3xl shadow-xl rotate-[20deg] card-hover">👟</div>
+                    <div class="absolute bottom-8 left-16 bg-white text-black text-6xl p-6 rounded-3xl shadow-xl rotate-[-8deg] card-hover">🎧</div>
+                    <div class="absolute -bottom-6 right-8 bg-white text-black text-6xl p-6 rounded-3xl shadow-xl rotate-[12deg] card-hover">💄</div>
+                    
+                    <!-- "Coming Soon" badge -->
+                    <div class="absolute top-12 left-1/2 -translate-x-1/2 bg-orange-500 text-white font-black text-4xl px-10 py-3 rounded-3xl rotate-[-12deg] shadow-2xl border-4 border-white product-badge">
+                        قريباً
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-white/60 text-sm">
+            <div class="mb-2 animate-bounce">↓</div>
+            اسحب لأسفل واستمتع
+        </div>
+    </header>
+
+    <!-- Fun teaser products -->
+    <section class="py-20 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between mb-12">
+                <h2 class="text-5xl font-bold">منتجات ستجننك قريباً 😍</h2>
+                <a onclick="fakeClick()" class="text-xl flex items-center gap-2 text-pink-400 hover:text-pink-300">
+                    شاهد كل المنتجات 
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white/5 rounded-3xl p-6 card-hover">
+                    <div class="h-56 bg-gradient-to-br from-violet-400 to-pink-400 rounded-2xl flex items-center justify-center text-8xl mb-6 relative">
+                        🎧
+                        <span class="absolute top-4 right-4 bg-black text-white text-xs font-bold px-4 py-1 rounded-3xl">جديد</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold">سماعات SpaceBuds Pro</h3>
+                    <p class="text-white/60 text-sm mb-3">صوت سماوي • عزل كامل • ٤٨ ساعة بطارية</p>
+                    <div class="flex justify-between items-baseline">
+                        <span class="text-4xl font-bold">٢٩٩٩ د.ج</span>
+                        <span class="text-orange-400 text-xl line-through">٤٩٩٩ د.ج</span>
+                    </div>
+                    <div class="text-xs bg-orange-400/20 text-orange-400 px-3 py-1 rounded-2xl inline-block mt-4">قريباً • خصم ٤٠٪ عند الإطلاق</div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white/5 rounded-3xl p-6 card-hover">
+                    <div class="h-56 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-2xl flex items-center justify-center text-8xl mb-6 relative">
+                        👟
+                    </div>
+                    <h3 class="text-2xl font-semibold">حذاء CloudRunner X</h3>
+                    <p class="text-white/60 text-sm mb-3">خفيف كالسحاب • تقنية الراحة المجنونة</p>
+                    <div class="flex justify-between items-baseline">
+                        <span class="text-4xl font-bold">٤٩٩٩ د.ج</span>
+                    </div>
+                    <div class="text-xs bg-white/10 text-white px-3 py-1 rounded-2xl inline-block mt-4">سيكون مطلوب جداً!</div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white/5 rounded-3xl p-6 card-hover">
+                    <div class="h-56 bg-gradient-to-br from-amber-400 to-red-400 rounded-2xl flex items-center justify-center text-8xl mb-6 relative">
+                        🧴
+                    </div>
+                    <h3 class="text-2xl font-semibold">مجموعة Skincare Magic</h3>
+                    <p class="text-white/60 text-sm mb-3">بشرة تحلم بها • منتجات طبيعية ١٠٠٪</p>
+                    <div class="flex justify-between items-baseline">
+                        <span class="text-4xl font-bold">١٧٩٩ د.ج</span>
+                    </div>
+                    <div class="text-xs bg-pink-400 text-white px-3 py-1 rounded-2xl inline-block mt-4">هدية مجانية مع كل طلب</div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white/5 rounded-3xl p-6 card-hover">
+                    <div class="h-56 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center text-8xl mb-6 relative">
+                        📦
+                    </div>
+                    <h3 class="text-2xl font-semibold">صندوق Surprise Box</h3>
+                    <p class="text-white/60 text-sm mb-3">منتجات عشوائية قيمتها +١٥٠٠٠ د.ج</p>
+                    <div class="flex justify-between items-baseline">
+                        <span class="text-4xl font-bold">٩٩٩ د.ج فقط</span>
+                    </div>
+                    <div class="text-xs bg-gradient-to-r from-pink-500 to-violet-500 text-white px-3 py-1 rounded-2xl inline-block mt-4">الكمية محدودة جداً!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun fact / why Shoplio is awesome -->
+    <section class="py-20 bg-gradient-to-b from-zinc-900 to-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-6xl font-bold mb-8">لماذا Shoplio مختلف؟</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-white/5 p-8 rounded-3xl">
+                        <div class="text-5xl mb-4">🎲</div>
+                        <h4 class="text-2xl font-semibold mb-3">مفاجآت يومية</h4>
+                        <p class="text-white/70">كل يوم منتج جديد يظهر فجأة مع خصم مجنون!</p>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-3xl">
+                        <div class="text-5xl mb-4">🚚</div>
+                        <h4 class="text-2xl font-semibold mb-3">توصيل في ساعة واحدة</h4>
+                        <p class="text-white/70">في المدن الكبرى • توصيل فوري ومجاني فوق ٥٠٠٠ د.ج</p>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-3xl">
+                        <div class="text-5xl mb-4">😂</div>
+                        <h4 class="text-2xl font-semibold mb-3">تجربة تسوق ممتعة</h4>
+                        <p class="text-white/70">ألعاب، تحديات، وجوائز حقيقية أثناء التسوق</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist banner -->
+    <div class="bg-gradient-to-r from-pink-600 via-violet-600 to-purple-600 py-8 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-3xl font-bold">لا تفوت الافتتاح الكبير!</p>
+            <p class="text-xl mb-6">سجّل بريدك الآن واحصل على خصم حصري ٣٠٪ + هدية مفاجأة عند الإطلاق</p>
+            <div onclick="showWaitlistModal()" class="inline-flex items-center bg-black text-white text-2xl font-bold px-14 py-6 rounded-3xl cursor-pointer hover:scale-110">
+                اشترك مجاناً 
+                <span class="ml-4 text-4xl">→</span>
             </div>
         </div>
     </div>
 
-    <!-- Application -->
-    <div id="app">
-        <iframe src="https://myapp.codeflying.app/1401277/pagesA/main_chat/index" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="text-4xl">🛒</div>
+                    <h1 class="text-4xl font-bold">Shoplio</h1>
+                </div>
+                <p class="text-white/60 text-sm">السوق الذي يجعل التسوق متعة حقيقية</p>
+            </div>
+            <div>
+                <p class="font-medium text-white/60 mb-4">الشركة</p>
+                <p class="text-white/80 text-sm space-y-2">عن Shoplio • الوظائف • المدونة • تواصل معنا</p>
+            </div>
+            <div>
+                <p class="font-medium text-white/60 mb-4">الدعم</p>
+                <p class="text-white/80 text-sm space-y-2">مركز المساعدة • تتبع الطلب • الإرجاع</p>
+            </div>
+            <div>
+                <p class="font-medium text-white/60 mb-4">تابعنا</p>
+                <div class="flex gap-6 text-3xl">
+                    <i onclick="fakeClick()" class="fa-brands fa-tiktok cursor-pointer"></i>
+                    <i onclick="fakeClick()" class="fa-brands fa-instagram cursor-pointer"></i>
+                    <i onclick="fakeClick()" class="fa-brands fa-snapchat cursor-pointer"></i>
+                </div>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+                <p class="text-xs text-white/40">© ٢٠٢٦ Shoplio. كل الحقوق محفوظة.<br>صُنع بحب في الجزائر 🇩🇿</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Waitlist Modal -->
+    <div onclick="if(event.target.id === 'waitlistModal')hideWaitlistModal()" 
+         id="waitlistModal"
+         class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl z-[9999] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-white text-black rounded-3xl max-w-lg w-full mx-4 p-8">
+            <h2 class="text-4xl font-bold mb-2">🎟️ انضم لقائمة Shoplio VIP</h2>
+            <p class="text-xl text-zinc-600 mb-8">ستكون أول من يعرف بالافتتاح + خصم خاص + هدية مجانية</p>
+            
+            <input id="emailInput" type="email" placeholder="بريدك الإلكتروني" 
+                   class="w-full px-8 py-6 text-2xl rounded-3xl border-2 border-zinc-200 focus:border-pink-500 outline-none mb-6">
+            
+            <button onclick="subscribe()" 
+                    class="w-full bg-gradient-to-r from-pink-500 to-violet-500 text-white py-7 text-2xl font-bold rounded-3xl flex items-center justify-center gap-4">
+                <span>أرسل لي الإشعار</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            
+            <p class="text-center text-xs text-zinc-400 mt-8">لن نرسل لك بريد مزعج أبداً. وعد! ❤️</p>
+            
+            <button onclick="hideWaitlistModal()" class="absolute top-6 right-6 text-3xl text-zinc-300 hover:text-black">✕</button>
+        </div>
     </div>
 
     <script>
-        setTimeout(() => {
-            document.getElementById('video-intro').classList.add('hide');
-            document.getElementById('app').classList.add('show');
-        }, 6000);
-    </script>
+        // Tailwind script
+        function initializeTailwind() {
+            tailwind.config = {
+                content: [],
+                theme: {
+                    extend: {}
+                }
+            }
+        }
 
+        // Fake click animation
+        function fakeClick() {
+            const notif = document.createElement('div')
+            notif.style.cssText = 'position:fixed; bottom:30px; left:30px; background:#22c55e; color:white; padding:16px 24px; border-radius:9999px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2); font-weight:700; z-index:99999;'
+            notif.innerHTML = '🚀 هذا سيفتح قريباً في Shoplio الحقيقي!'
+            document.body.appendChild(notif)
+            
+            setTimeout(() => {
+                notif.style.transform = 'translateY(100px)'
+                notif.style.opacity = '0'
+                setTimeout(() => notif.remove(), 600)
+            }, 2200)
+        }
+
+        // Confetti explosion
+        function launchFireworks() {
+            const container = document.getElementById('confetti')
+            const colors = ['#ff00cc', '#00ffff', '#ffff00', '#00ff00', '#ff9900']
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div')
+                confetti.className = 'confetti'
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+                confetti.style.left = Math.random() * 100 + 'vw'
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's'
+                confetti.style.opacity = Math.random()
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`
+                container.appendChild(confetti)
+                
+                setTimeout(() => {
+                    confetti.remove()
+                }, 5000)
+            }
+            
+            // Celebration message
+            const msg = document.createElement('div')
+            msg.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:rgba(0,0,0,0.8); color:white; padding:30px 50px; border-radius:9999px; font-size:2rem; font-weight:900; z-index:99999; white-space:nowrap; box-shadow:0 0 60px #ff00cc;'
+            msg.innerHTML = '🎉 تهانينا! أنت جاهز لـ Shoplio!'
+            document.body.appendChild(msg)
+            
+            setTimeout(() => msg.remove(), 2800)
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu')
+            menu.classList.toggle('hidden')
+        }
+
+        // Modal
+        function showWaitlistModal() {
+            document.getElementById('waitlistModal').classList.remove('hidden')
+            document.getElementById('waitlistModal').classList.add('flex')
+        }
+        
+        function hideWaitlistModal() {
+            const modal = document.getElementById('waitlistModal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        function subscribe() {
+            const email = document.getElementById('emailInput').value.trim()
+            if (!email) {
+                alert('😊 أدخل بريدك الإلكتروني أولاً!')
+                return
+            }
+            
+            hideWaitlistModal()
+            
+            // Success animation
+            const success = document.createElement('div')
+            success.style.cssText = 'position:fixed; top:40px; right:40px; background:#10b981; color:white; padding:20px 30px; border-radius:9999px; display:flex; align-items:center; gap:12px; box-shadow:25px 25px 0 -10px #10b981; font-weight:700; z-index:999999'
+            success.innerHTML = `✅ شكراً! <br>ستصلك كل الأخبار على <span class="underline">${email}</span>`
+            document.body.appendChild(success)
+            
+            setTimeout(() => {
+                success.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 1, 1)'
+                success.style.transform = 'translateY(-100px)'
+                success.style.opacity = '0'
+                setTimeout(() => success.remove(), 800)
+            }, 3200)
+            
+            // Launch small confetti
+            launchFireworks()
+        }
+
+        // Keyboard easter egg
+        function easterEgg() {
+            if (event.key === '/' && event.metaKey) {
+                event.preventDefault()
+                launchFireworks()
+            }
+        }
+
+        // Initialize everything
+        window.onload = function() {
+            initializeTailwind()
+            console.log('%c✅ Shoplio HTML جاهز ومتطور! 🎉', 'background:#ff00cc;color:white;padding:2px 6px;border-radius:4px;font-weight:bold')
+            
+            // Auto launch small confetti after 3 seconds
+            setTimeout(() => {
+                if (Math.random() > 0.6) launchFireworks()
+            }, 3000)
+            
+            // Make document RTL ready
+            document.documentElement.setAttribute('dir', 'rtl')
+            
+            console.log('الموقع يعمل بكامل طاقته مع شعور بالمتعة الكاملة ✨')
+        }
+    </script>
 </body>
 </html>
