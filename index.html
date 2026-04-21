@@ -735,4 +735,781 @@
             padding: 1.5rem;
             text-align: right;
             margin-bottom: 1.5rem;
- 
+        }
+
+        .success-details h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-details h4 i {
+            color: var(--success);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.625rem 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .success-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .success-footer i {
+            color: var(--success);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-warm);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            border-color: var(--brand);
+            color: var(--brand);
+            background: var(--brand-soft);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--bg-warm);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .footer-mark {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--brand) 0%, #8b5cf6 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .footer-info h4 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.125rem;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-xl);
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            border-color: var(--success);
+            background: var(--success-soft);
+        }
+
+        .toast.error {
+            border-color: var(--error);
+            background: #fef2f2;
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+        }
+
+        .toast.success .toast-icon {
+            color: var(--success);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--error);
+        }
+
+        .toast-message {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item:nth-child(2)::after {
+                display: none;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-wrapper {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-warm);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="brand-mark">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">Course DZ</span>
+                    <span class="brand-tagline">منصة التدريب المهني</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#testimonials">آراء المتدربين</a></li>
+                <li><a href="#register">التسجيل</a></li>
+            </ul>
+            <a href="#register" class="nav-cta">سجل الآن</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                <span>منصة رائدة في الجزائر</span>
+            </div>
+            <h1>
+                ابنِ مستقبلك المهني مع<br>
+                <span class="highlight">Course DZ</span>
+            </h1>
+            <p>انضم إلى آلاف المتدربين الناجحين. نقدم لك تدريباً احترافياً يؤهلك لسوق العمل بأحدث المهارات المطلوبة.</p>
+            <div class="hero-buttons">
+                <a href="#register" class="btn btn-primary">
+                    ابدأ رحلتك الآن
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    اكتشف المميزات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">+50</div>
+                <div class="stat-label">دورة تدريبية</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+5000</div>
+                <div class="stat-label">متدرب ناجح</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">نسبة الرضا</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+100</div>
+                <div class="stat-label">مدرب خبير</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-tag">
+                <i class="fas fa-sparkles"></i>
+                لماذا نحن
+            </span>
+            <h2>مميزات منصة Course DZ</h2>
+            <p>نقدم لك تجربة تعليمية فريدة تجمع بين الاحترافية والابتكار</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>شهادات معتمدة</h3>
+                <p>احصل على شهادات دولية معترف بها تؤهلك لسوق العمل المحلي والدولي</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>مدربون خبراء</h3>
+                <p>تعلم من نخبة المدربين ذوي الخبرة العملية الواسعة في مجالاتهم</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>تعلم عملي</h3>
+                <p>نهجنا قائم على التطبيق العملي والمشاريع الحقيقية لضمان فهم أعمق</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <span class="section-tag">
+                <i class="fas fa-heart"></i>
+                آراء المتدربين
+            </span>
+            <h2>ماذا يقولون عن Course DZ</h2>
+            <p>قصص نجاح حقيقية من متدربينا المتميزين</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"تجربة رائعة! المدربون محترفون والدورات عملية جداً. استطعت العمل بشكل حر بعد إتمام التدريب."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">أ.م</div>
+                    <div class="author-info">
+                        <h4>أحمد مراد</h4>
+                        <p>مصمم جرافيك - وهران</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"المنصة سهلة الاستخدام والدعم الفني ممتاز. أنصح كل من يريد تطوير مهاراته بالانضمام."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">س.ك</div>
+                    <div class="author-info">
+                        <h4>سارة كمال</h4>
+                        <p>مطورة ويب - الجزائر العاصمة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="testimonial-text">"شهادة معتمدة وفريق دعم رائع. Course DZ غيرت مسار حياتي المهني للأفضل."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">ي.ب</div>
+                    <div class="author-info">
+                        <h4>يوسف بن علي</h4>
+                        <p>مسوق رقمي - قسنطينة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration -->
+    <section class="registration" id="register">
+        <div class="registration-container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i class="fas fa-pen"></i>
+                    التسجيل
+                </span>
+                <h2>سجل بياناتك الآن</h2>
+                <p>املأ الاستمارة التالية وسنقوم بالتواصل معك في أقرب وقت</p>
+            </div>
+            
+            <div class="form-wrapper">
+                <!-- Form -->
+                <form id="registrationForm" action="https://formsubmit.co/ajax/mzianiemzianie@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="تسجيل جديد في Course DZ">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_next" value="https://coursedz.com/thanks">
+
+                    <div class="form-header">
+                        <div class="form-header-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>استمارة التسجيل</h3>
+                        <p>جميع الحقول المؤشرة بـ * إلزامية</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">الاسم *</label>
+                            <input type="text" id="firstName" name="الاسم" class="form-control" placeholder="أدخل اسمك" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">اللقب *</label>
+                            <input type="text" id="lastName" name="اللقب" class="form-control" placeholder="أدخل لقبك" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف *</label>
+                            <input type="tel" id="phone" name="رقم_الهاتف" class="form-control" placeholder="05XX XX XX XX" pattern="0[5-7][0-9]{8}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني (اختياري)</label>
+                            <input type="email" id="email" name="البريد_الإلكتروني" class="form-control" placeholder="example@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">الولاية *</label>
+                            <select id="state" name="الولاية" class="form-control" required>
+                                <option value="" disabled selected>اختر الولاية</option>
+                                <option value="أدرار">أدرار</option>
+                                <option value="الشلف">الشلف</option>
+                                <option value="الأغواط">الأغواط</option>
+                                <option value="أم البواقي">أم البواقي</option>
+                                <option value="باتنة">باتنة</option>
+                                <option value="بجاية">بجاية</option>
+                                <option value="بسكرة">بسكرة</option>
+                                <option value="بشار">بشار</option>
+                                <option value="البليدة">البليدة</option>
+                                <option value="البويرة">البويرة</option>
+                                <option value="تمنراست">تمنراست</option>
+                                <option value="تبسة">تبسة</option>
+                                <option value="تلمسان">تلمسان</option>
+                                <option value="تيارت">تيارت</option>
+                                <option value="تيزي وزو">تيزي وزو</option>
+                                <option value="الجزائر العاصمة">الجزائر العاصمة</option>
+                                <option value="الجلفة">الجلفة</option>
+                                <option value="جيجل">جيجل</option>
+                                <option value="سطيف">سطيف</option>
+                                <option value="سعيدة">سعيدة</option>
+                                <option value="سكيكدة">سكيكدة</option>
+                                <option value="سيدي بلعباس">سيدي بلعباس</option>
+                                <option value="عنابة">عنابة</option>
+                                <option value="قالمة">قالمة</option>
+                                <option value="قسنطينة">قسنطينة</option>
+                                <option value="المدية">المدية</option>
+                                <option value="مستغانم">مستغانم</option>
+                                <option value="المسيلة">المسيلة</option>
+                                <option value="معسكر">معسكر</option>
+                                <option value="ورقلة">ورقلة</option>
+                                <option value="وهران">وهران</option>
+                                <option value="البيض">البيض</option>
+                                <option value="إليزي">إليزي</option>
+                                <option value="برج بوعريريج">برج بوعريريج</option>
+                                <option value="بومرداس">بومرداس</option>
+                                <option value="الطارف">الطارف</option>
+                                <option value="تندوف">تندوف</option>
+                                <option value="تيسمسيلت">تيسمسيلت</option>
+                                <option value="الوادي">الوادي</option>
+                                <option value="خنشلة">خنشلة</option>
+                                <option value="سوق أهراس">سوق أهراس</option>
+                                <option value="تيبازة">تيبازة</option>
+                                <option value="ميلة">ميلة</option>
+                                <option value="عين الدفلى">عين الدفلى</option>
+                                <option value="النعامة">النعامة</option>
+                                <option value="عين تيموشنت">عين تيموشنت</option>
+                                <option value="غرداية">غرداية</option>
+                                <option value="غليزان">غليزان</option>
+                                <option value="تيميمون">تيميمون</option>
+                                <option value="برج باجي مختار">برج باجي مختار</option>
+                                <option value="أولاد جلال">أولاد جلال</option>
+                                <option value="بني عباس">بني عباس</option>
+                                <option value="عين صالح">عين صالح</option>
+                                <option value="عين قزام">عين قزام</option>
+                                <option value="توقرت">توقرت</option>
+                                <option value="جانت">جانت</option>
+                                <option value="المغير">المغير</option>
+                                <option value="المنيعة">المنيعة</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">العمر *</label>
+                            <input type="number" id="age" name="العمر" class="form-control" placeholder="أدخل عمرك" min="15" max="80" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">المستوى الدراسي *</label>
+                        <select id="education" name="المستوى_الدراسي" class="form-control" required>
+                            <option value="" disabled selected>اختر المستوى الدراسي</option>
+                            <option value="متوسط">متوسط</option>
+                            <option value="ثانوي">ثانوي</option>
+                            <option value="جامعي">جامعي</option>
+                            <option value="دكتوراه">دكتوراه</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">ملاحظات إضافية (اختياري)</label>
+                        <textarea id="notes" name="ملاحظات" class="form-control" placeholder="أي ملاحظات أو استفسارات..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="loader"></span>
+                        <span class="btn-text">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال طلب التسجيل
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon-wrap">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3>تم إرسال الاستمارة بنجاح!</h3>
+                    <p>شكراً لتسجيلك معنا في Course DZ. سنقوم بمراجعة طلبك والرد عليك في أقرب وقت.</p>
+                    
+                    <div class="success-details">
+                        <h4>
+                            <i class="fas fa-clipboard-list"></i>
+                            ملخص البيانات المرسلة
+                        </h4>
+                        <div id="successInfo"></div>
+                    </div>
+                    
+                    <div class="success-footer">
+                        <i class="fas fa-clock"></i>
+                        سيتم التواصل معك خلال 24-48 ساعة
+                    </div>
+
+                    <button class="back-btn" onclick="resetForm()">
+                        <i class="fas fa-redo"></i>
+                        تسجيل جديد
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-mark">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="footer-info">
+                    <h4>Course DZ</h4>
+                    <p>منصة التدريب المهني</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#home">الرئيسية</a>
+                <a href="#features">المميزات</a>
+                <a href="#testimonials">آراء المتدربين</a>
+                <a href="#register">التسجيل</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Course DZ. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <script>
+        // Elements
+        const form = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const successInfo = document.getElementById('successInfo');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const navbar = document.getElementById('navbar');
+
+        // Show toast
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const now = new Date();
+                const requestId = 'CDZ-' + Date.now().toString().slice(-6);
+                
+                formData.append('تاريخ_الإرسال', now.toLocaleString('ar-DZ'));
+                formData.append('رقم_الطلب', requestId);
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    const data = Object.fromEntries(formData);
+                    
+                    // Build success info
+                    let html = `
+                        <div class="info-row">
+                            <span class="info-label">الاسم الكامل</span>
+                            <span class="info-value">${data['الاسم']} ${data['اللقب']}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">رقم الهاتف</span>
+                            <span class="info-value">${data['رقم_الهاتف']}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">الولاية</span>
+                            <span class="info-value">${data['الولاية']}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">المستوى الدراسي</span>
+                            <span class="info-value">${data['المستوى_الدراسي']}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">العمر</span>
+                            <span class="info-value">${data['العمر']} سنة</span>
+                        </div>
+                    `;
+                    
+                    if (data['البريد_الإلكتروني']) {
+                        html += `
+                            <div class="info-row">
+                                <span class="info-label">البريد الإلكتروني</span>
+                                <span class="info-value">${data['البريد_الإلكتروني']}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (data['ملاحظات']) {
+                        html += `
+                            <div class="info-row">
+                                <span class="info-label">الملاحظات</span>
+                                <span class="info-value">${data['ملاحظات']}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                        <div class="info-row">
+                            <span class="info-label">تاريخ الإرسال</span>
+                            <span class="info-value">${data['تاريخ_الإرسال']}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">رقم الطلب</span>
+                            <span class="info-value" style="color: var(--brand);">${data['رقم_الطلب']}</span>
+                        </div>
+                    `;
+
+                    successInfo.innerHTML = html;
+                    form.style.display = 'none';
+                    successMessage.classList.add('show');
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    showToast('تم إرسال بياناتك بنجاح!');
+                    
+                } else {
+                    throw new Error('Failed to send');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('حدث خطأ في الإرسال. الرجاء المحاولة مرة أخرى.', 'error');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Reset form
+        function resetForm() {
+            form.reset();
+            form.style.display = 'block';
+            successMessage.classList.remove('show');
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
