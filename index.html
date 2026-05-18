@@ -3,1513 +3,711 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course DZ | منصة التدريب المهني</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>شبكة HAROUN</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --bg: #ffffff;
-            --bg-warm: #fafaf9;
-            --bg-cream: #f5f5f4;
-            --text: #1c1917;
-            --text-secondary: #78716c;
-            --text-muted: #a8a29e;
-            --brand: #7c3aed;
-            --brand-light: #ddd6fe;
-            --brand-soft: #f5f3ff;
-            --accent: #f59e0b;
-            --accent-soft: #fffbeb;
-            --border: #e7e5e4;
-            --border-light: #f5f5f4;
-            --success: #10b981;
-            --success-soft: #ecfdf5;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
-            --radius-sm: 8px;
-            --radius: 12px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         body {
-            font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        /* ===== NAVIGATION ===== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border-light);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-            text-decoration: none;
-        }
-
-        .brand-mark {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--brand) 0%, #8b5cf6 100%);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            color: white;
-            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-name {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-
-        .brand-tagline {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-top: 0.125rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--brand);
-        }
-
-        .nav-cta {
-            background: var(--text);
-            color: white;
-            padding: 0.65rem 1.5rem;
-            border-radius: var(--radius);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .nav-cta:hover {
-            background: var(--brand);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
-        }
-
-        /* ===== HERO ===== */
-        .hero {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e8e8f0;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 2rem 5rem;
-            background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
-            position: relative;
-            overflow: hidden;
+            padding: 10px;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 720px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--brand-soft);
-            border: 1px solid var(--brand-light);
-            padding: 0.5rem 1.25rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--brand);
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        .hero-badge i {
-            font-size: 0.75rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            letter-spacing: -0.03em;
-        }
-
-        .hero h1 .highlight {
-            color: var(--brand);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 0;
-            right: 0;
-            height: 12px;
-            background: linear-gradient(120deg, var(--brand-light) 0%, transparent 100%);
-            border-radius: 4px;
-            z-index: -1;
-            opacity: 0.6;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 520px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.625rem;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: var(--text);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            background: var(--brand);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--text);
-            border: 1.5px solid var(--border);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--brand);
-            color: var(--brand);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* ===== STATS ===== */
-        .stats {
-            padding: 5rem 2rem;
-            background: var(--bg);
-        }
-
-        .stats-grid {
-            max-width: 900px;
+        
+        .container {
+            max-width: 500px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
         }
-
+        
+        /* ====== البطاقة الرئيسية ====== */
+        .main-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px 15px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8f0;
+        }
+        
+        .main-avatar {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #a8c5a8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        
+        .main-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .main-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #999;
+            margin-bottom: 2px;
+        }
+        
+        .main-id {
+            color: #bbb;
+            font-size: 10px;
+            margin-bottom: 6px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 3px 15px;
+            border-radius: 12px;
+            font-size: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .main-points {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ddd;
+            margin: 5px 0;
+        }
+        
+        .points-label {
+            color: #bbb;
+            font-size: 11px;
+            margin-bottom: 12px;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+            position: relative;
+        }
+        
+        .stats-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: #f0f0f5;
+        }
+        
         .stat-item {
             text-align: center;
-            padding: 1.5rem;
-            position: relative;
+            flex: 1;
         }
-
-        .stat-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 20%;
-            height: 60%;
-            width: 1px;
-            background: var(--border);
+        
+        .stat-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #aaa;
         }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            font-variant-numeric: tabular-nums;
+        
+        .stat-detail {
+            font-size: 9px;
+            color: #ccc;
+            margin-top: 2px;
+            line-height: 1.5;
         }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        /* ===== FEATURES ===== */
-        .features {
-            padding: 6rem 2rem;
-            background: var(--bg-warm);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 560px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--brand);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text);
-            letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .features-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .feature-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--brand-light);
-        }
-
-        .feature-icon-wrap {
-            width: 64px;
-            height: 64px;
-            background: var(--brand-soft);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
-            color: var(--brand);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover .feature-icon-wrap {
-            background: var(--brand);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .feature-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        /* ===== TESTIMONIALS ===== */
-        .testimonials {
-            padding: 6rem 2rem;
-            background: var(--bg);
-        }
-
-        .testimonials-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-warm);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
-
-        .testimonial-stars {
-            color: var(--accent);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-        }
-
-        .author-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--brand-light), var(--brand-soft));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--brand);
-            font-size: 0.9rem;
-        }
-
-        .author-info h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .author-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* ===== REGISTRATION ===== */
-        .registration {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
-        }
-
-        .registration-container {
-            max-width: 640px;
-            margin: 0 auto;
-        }
-
-        .form-wrapper {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 3rem;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .form-header-icon {
-            width: 72px;
-            height: 72px;
-            background: var(--brand-soft);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.25rem;
-            font-size: 1.75rem;
-            color: var(--brand);
-        }
-
-        .form-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-header p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--text);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            background: var(--bg-warm);
-            color: var(--text);
-        }
-
-        .form-control::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--brand);
-            background: var(--bg);
-            box-shadow: 0 0 0 4px var(--brand-soft);
-        }
-
-        .form-row {
+        
+        /* ====== شبكة الأعضاء ====== */
+        .members-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 15px;
+            padding: 0 5px;
         }
-
-        select.form-control {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 1rem center;
-            padding-left: 2.5rem;
+        
+        .member-card {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid #e8e8f0;
         }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 100px;
+        
+        .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f5f5f8;
         }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--text);
+        
+        .member-badge {
+            background: #28a745;
             color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.625rem;
-            margin-top: 0.5rem;
-            box-shadow: var(--shadow-md);
+            font-size: 9px;
         }
-
-        .submit-btn:hover {
-            background: var(--brand);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+        
+        .member-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin-bottom: 8px;
+            position: relative;
         }
-
-        .submit-btn:active {
-            transform: translateY(0);
+        
+        .member-stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: #f0f0f5;
         }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .submit-btn .loader {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2.5px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        .submit-btn.loading .loader {
-            display: block;
-        }
-
-        .submit-btn.loading .btn-text {
-            display: none;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ===== SUCCESS ===== */
-        .success-message {
-            display: none;
+        
+        .member-stat {
             text-align: center;
-            animation: fadeUp 0.5s ease;
         }
-
-        .success-message.show {
-            display: block;
+        
+        .member-stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #aaa;
         }
-
-        @keyframes fadeUp {
+        
+        .member-stat-label {
+            font-size: 8px;
+            color: #ccc;
+            margin-top: 1px;
+            line-height: 1.4;
+        }
+        
+        .member-avatars {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 6px;
+        }
+        
+        .member-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .member-avatar:hover {
+            transform: scale(1.1);
+        }
+        
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-avatar::after {
+            content: '▼';
+            position: absolute;
+            bottom: -8px;
+            color: #9b7fd4;
+            font-size: 8px;
+        }
+        
+        /* ====== أسماء الأعضاء تحت الصور ====== */
+        .member-names {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 10px;
+            color: #888;
+            font-weight: bold;
+        }
+        
+        .member-name-item {
+            width: 35px;
+            text-align: center;
+        }
+        
+        /* ====== نافذة منبثقة للسجل ====== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
             from {
+                transform: translateY(50px);
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
-
-        .success-icon-wrap {
-            width: 88px;
-            height: 88px;
-            background: var(--success-soft);
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-            color: var(--success);
-            animation: scaleIn 0.4s ease 0.1s both;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        .success-message h3 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-        }
-
-        .success-message > p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .success-details {
-            background: var(--bg-warm);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            text-align: right;
-            margin-bottom: 1.5rem;
-        }
-
-        .success-details h4 {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .success-details h4 i {
-            color: var(--success);
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.625rem 0;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 0.9rem;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .info-value {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .success-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        .success-footer i {
-            color: var(--success);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-warm);
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
+            background: #f0f0f0;
+            border: none;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .back-btn:hover {
-            border-color: var(--brand);
-            color: var(--brand);
-            background: var(--brand-soft);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 4rem 2rem 2rem;
-            background: var(--bg-warm);
-            border-top: 1px solid var(--border-light);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-        }
-
-        .footer-mark {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--brand) 0%, #8b5cf6 100%);
-            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: white;
+            color: #666;
         }
-
-        .footer-info h4 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 0.125rem;
-        }
-
-        .footer-info p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--brand);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+        
+        .modal-title {
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8e8f0;
         }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.5rem;
+        
+        .record-item {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            box-shadow: var(--shadow-xl);
-            z-index: 9999;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+        
+        .record-icon {
+            font-size: 20px;
+            margin-left: 10px;
+            min-width: 30px;
+            text-align: center;
         }
-
-        .toast.success {
-            border-color: var(--success);
-            background: var(--success-soft);
+        
+        .record-text {
+            flex: 1;
         }
-
-        .toast.error {
-            border-color: var(--error);
-            background: #fef2f2;
+        
+        .record-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 2px;
         }
-
-        .toast-icon {
-            font-size: 1.25rem;
+        
+        .record-value {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
         }
-
-        .toast.success .toast-icon {
-            color: var(--success);
+        
+        .record-status {
+            text-align: center;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #856404;
+            font-weight: bold;
         }
-
-        .toast.error .toast-icon {
-            color: var(--error);
+        
+        .record-divider {
+            text-align: center;
+            color: #ccc;
+            margin: 10px 0;
+            font-size: 12px;
         }
-
-        .toast-message {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stat-item:nth-child(2)::after {
-                display: none;
-            }
-
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .form-wrapper {
-                padding: 2rem 1.5rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-warm);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
+        
+        /* ====== الفوتر ====== */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #bbb;
+            font-size: 11px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand">
-                <div class="brand-mark">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">Course DZ</span>
-                    <span class="brand-tagline">منصة التدريب المهني</span>
-                </div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#features">المميزات</a></li>
-                <li><a href="#testimonials">آراء المتدربين</a></li>
-                <li><a href="#register">التسجيل</a></li>
-            </ul>
-            <a href="#register" class="nav-cta">سجل الآن</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-star"></i>
-                <span>منصة رائدة في الجزائر</span>
+    <div class="container">
+        
+        <!-- البطاقة الرئيسية - HAROUN بصورة COR -->
+        <div class="main-card">
+            <div class="main-avatar">
+                <img src="https://i.postimg.cc/CKh8vgN7/IMG-20260505-WA0015.jpg" alt="COR">
             </div>
-            <h1>
-                ابنِ مستقبلك المهني مع<br>
-                <span class="highlight">Course DZ</span>
-            </h1>
-            <p>انضم إلى آلاف المتدربين الناجحين. نقدم لك تدريباً احترافياً يؤهلك لسوق العمل بأحدث المهارات المطلوبة.</p>
-            <div class="hero-buttons">
-                <a href="#register" class="btn btn-primary">
-                    ابدأ رحلتك الآن
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <a href="#features" class="btn btn-secondary">
-                    اكتشف المميزات
-                </a>
+            <div class="main-name">HAROUN</div>
+            <div class="main-id">NV9080734</div>
+            <div class="status-badge">ذهب</div>
+            <div class="main-points">2121</div>
+            <div class="points-label">الرصيد الإجمالي</div>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-detail">0 BV W<br>380 BV R</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">120</div>
+                    <div class="stat-detail">120 BV W<br>1300 BV R</div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">+50</div>
-                <div class="stat-label">دورة تدريبية</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">+5000</div>
-                <div class="stat-label">متدرب ناجح</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">نسبة الرضا</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">+100</div>
-                <div class="stat-label">مدرب خبير</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="features">
-        <div class="section-header">
-            <span class="section-tag">
-                <i class="fas fa-sparkles"></i>
-                لماذا نحن
-            </span>
-            <h2>مميزات منصة Course DZ</h2>
-            <p>نقدم لك تجربة تعليمية فريدة تجمع بين الاحترافية والابتكار</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon-wrap">
-                    <i class="fas fa-certificate"></i>
+        
+        <!-- شبكة الأعضاء: بطاقتان فقط -->
+        <div class="members-grid">
+            
+            <!-- اليمين: MOHAMED -->
+            <div class="member-card">
+                <div class="member-header">
+                    <span></span>
+                    <span class="member-badge">3</span>
                 </div>
-                <h3>شهادات معتمدة</h3>
-                <p>احصل على شهادات دولية معترف بها تؤهلك لسوق العمل المحلي والدولي</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon-wrap">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
-                <h3>مدربون خبراء</h3>
-                <p>تعلم من نخبة المدربين ذوي الخبرة العملية الواسعة في مجالاتهم</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon-wrap">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>تعلم عملي</h3>
-                <p>نهجنا قائم على التطبيق العملي والمشاريع الحقيقية لضمان فهم أعمق</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-header">
-            <span class="section-tag">
-                <i class="fas fa-heart"></i>
-                آراء المتدربين
-            </span>
-            <h2>ماذا يقولون عن Course DZ</h2>
-            <p>قصص نجاح حقيقية من متدربينا المتميزين</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"تجربة رائعة! المدربون محترفون والدورات عملية جداً. استطعت العمل بشكل حر بعد إتمام التدريب."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">أ.م</div>
-                    <div class="author-info">
-                        <h4>أحمد مراد</h4>
-                        <p>مصمم جرافيك - وهران</p>
+                <div class="member-stats">
+                    <div class="member-stat">
+                        <div class="member-stat-value">0</div>
+                        <div class="member-stat-label">0 W<br>BVR 0</div>
+                    </div>
+                    <div class="member-stat">
+                        <div class="member-stat-value">380</div>
+                        <div class="member-stat-label">واط 380<br>BVR 380</div>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">"المنصة سهلة الاستخدام والدعم الفني ممتاز. أنصح كل من يريد تطوير مهاراته بالانضمام."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">س.ك</div>
-                    <div class="author-info">
-                        <h4>سارة كمال</h4>
-                        <p>مطورة ويب - الجزائر العاصمة</p>
+                <div class="member-avatars">
+                    <div class="member-avatar" onclick="openModal('mohamed')">
+                        <img src="https://i.postimg.cc/Y0ZNVs9w/Screenshot-20260422-162744-1.jpg" alt="IR">
+                    </div>
+                    <div class="member-avatar" onclick="openModal('moutaz')">
+                        <img src="https://i.postimg.cc/Y0ZNVs9w/Screenshot-20260422-162744-1.jpg" alt="IR">
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                <div class="member-names">
+                    <div class="member-name-item">Mohamed</div>
+                    <div class="member-name-item">MOUTAZ</div>
                 </div>
-                <p class="testimonial-text">"شهادة معتمدة وفريق دعم رائع. Course DZ غيرت مسار حياتي المهني للأفضل."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">ي.ب</div>
-                    <div class="author-info">
-                        <h4>يوسف بن علي</h4>
-                        <p>مسوق رقمي - قسنطينة</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration -->
-    <section class="registration" id="register">
-        <div class="registration-container">
-            <div class="section-header">
-                <span class="section-tag">
-                    <i class="fas fa-pen"></i>
-                    التسجيل
-                </span>
-                <h2>سجل بياناتك الآن</h2>
-                <p>املأ الاستمارة التالية وسنقوم بالتواصل معك في أقرب وقت</p>
             </div>
             
-            <div class="form-wrapper">
-                <!-- Form -->
-                <form id="registrationForm" action="https://formsubmit.co/ajax/mzianiemzianie@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="تسجيل جديد في Course DZ">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_honey" style="display:none">
-                    <input type="hidden" name="_next" value="https://coursedz.com/thanks">
-
-                    <div class="form-header">
-                        <div class="form-header-icon">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <h3>استمارة التسجيل</h3>
-                        <p>جميع الحقول المؤشرة بـ * إلزامية</p>
+            <!-- اليسار: AYOUB -->
+            <div class="member-card">
+                <div class="member-header">
+                    <span></span>
+                    <span class="member-badge">3</span>
+                </div>
+                <div class="member-stats">
+                    <div class="member-stat">
+                        <div class="member-stat-value">0</div>
+                        <div class="member-stat-label">واط 500<br>BVR 0</div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">الاسم *</label>
-                            <input type="text" id="firstName" name="الاسم" class="form-control" placeholder="أدخل اسمك" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">اللقب *</label>
-                            <input type="text" id="lastName" name="اللقب" class="form-control" placeholder="أدخل لقبك" required>
-                        </div>
+                    <div class="member-stat">
+                        <div class="member-stat-value">0</div>
+                        <div class="member-stat-label">0 W<br>BVR 0</div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">رقم الهاتف *</label>
-                            <input type="tel" id="phone" name="رقم_الهاتف" class="form-control" placeholder="05XX XX XX XX" pattern="0[5-7][0-9]{8}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني (اختياري)</label>
-                            <input type="email" id="email" name="البريد_الإلكتروني" class="form-control" placeholder="example@email.com">
-                        </div>
+                </div>
+                <div class="member-avatars">
+                    <div class="member-avatar" onclick="openModal('amani')">
+                        <img src="https://i.postimg.cc/Y0ZNVs9w/Screenshot-20260422-162744-1.jpg" alt="IR">
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="state">الولاية *</label>
-                            <select id="state" name="الولاية" class="form-control" required>
-                                <option value="" disabled selected>اختر الولاية</option>
-                                <option value="أدرار">أدرار</option>
-                                <option value="الشلف">الشلف</option>
-                                <option value="الأغواط">الأغواط</option>
-                                <option value="أم البواقي">أم البواقي</option>
-                                <option value="باتنة">باتنة</option>
-                                <option value="بجاية">بجاية</option>
-                                <option value="بسكرة">بسكرة</option>
-                                <option value="بشار">بشار</option>
-                                <option value="البليدة">البليدة</option>
-                                <option value="البويرة">البويرة</option>
-                                <option value="تمنراست">تمنراست</option>
-                                <option value="تبسة">تبسة</option>
-                                <option value="تلمسان">تلمسان</option>
-                                <option value="تيارت">تيارت</option>
-                                <option value="تيزي وزو">تيزي وزو</option>
-                                <option value="الجزائر العاصمة">الجزائر العاصمة</option>
-                                <option value="الجلفة">الجلفة</option>
-                                <option value="جيجل">جيجل</option>
-                                <option value="سطيف">سطيف</option>
-                                <option value="سعيدة">سعيدة</option>
-                                <option value="سكيكدة">سكيكدة</option>
-                                <option value="سيدي بلعباس">سيدي بلعباس</option>
-                                <option value="عنابة">عنابة</option>
-                                <option value="قالمة">قالمة</option>
-                                <option value="قسنطينة">قسنطينة</option>
-                                <option value="المدية">المدية</option>
-                                <option value="مستغانم">مستغانم</option>
-                                <option value="المسيلة">المسيلة</option>
-                                <option value="معسكر">معسكر</option>
-                                <option value="ورقلة">ورقلة</option>
-                                <option value="وهران">وهران</option>
-                                <option value="البيض">البيض</option>
-                                <option value="إليزي">إليزي</option>
-                                <option value="برج بوعريريج">برج بوعريريج</option>
-                                <option value="بومرداس">بومرداس</option>
-                                <option value="الطارف">الطارف</option>
-                                <option value="تندوف">تندوف</option>
-                                <option value="تيسمسيلت">تيسمسيلت</option>
-                                <option value="الوادي">الوادي</option>
-                                <option value="خنشلة">خنشلة</option>
-                                <option value="سوق أهراس">سوق أهراس</option>
-                                <option value="تيبازة">تيبازة</option>
-                                <option value="ميلة">ميلة</option>
-                                <option value="عين الدفلى">عين الدفلى</option>
-                                <option value="النعامة">النعامة</option>
-                                <option value="عين تيموشنت">عين تيموشنت</option>
-                                <option value="غرداية">غرداية</option>
-                                <option value="غليزان">غليزان</option>
-                                <option value="تيميمون">تيميمون</option>
-                                <option value="برج باجي مختار">برج باجي مختار</option>
-                                <option value="أولاد جلال">أولاد جلال</option>
-                                <option value="بني عباس">بني عباس</option>
-                                <option value="عين صالح">عين صالح</option>
-                                <option value="عين قزام">عين قزام</option>
-                                <option value="توقرت">توقرت</option>
-                                <option value="جانت">جانت</option>
-                                <option value="المغير">المغير</option>
-                                <option value="المنيعة">المنيعة</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="age">العمر *</label>
-                            <input type="number" id="age" name="العمر" class="form-control" placeholder="أدخل عمرك" min="15" max="80" required>
-                        </div>
+                    <div class="member-avatar" onclick="openModal('ayoub')">
+                        <img src="https://i.postimg.cc/Y0ZNVs9w/Screenshot-20260422-162744-1.jpg" alt="IR">
                     </div>
-
-                    <div class="form-group">
-                        <label for="education">المستوى الدراسي *</label>
-                        <select id="education" name="المستوى_الدراسي" class="form-control" required>
-                            <option value="" disabled selected>اختر المستوى الدراسي</option>
-                            <option value="متوسط">متوسط</option>
-                            <option value="ثانوي">ثانوي</option>
-                            <option value="جامعي">جامعي</option>
-                            <option value="دكتوراه">دكتوراه</option>
-                            <option value="أخرى">أخرى</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="notes">ملاحظات إضافية (اختياري)</label>
-                        <textarea id="notes" name="ملاحظات" class="form-control" placeholder="أي ملاحظات أو استفسارات..."></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="loader"></span>
-                        <span class="btn-text">
-                            <i class="fas fa-paper-plane"></i>
-                            إرسال طلب التسجيل
-                        </span>
-                    </button>
-                </form>
-
-                <!-- Success Message -->
-                <div class="success-message" id="successMessage">
-                    <div class="success-icon-wrap">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <h3>تم إرسال الاستمارة بنجاح!</h3>
-                    <p>شكراً لتسجيلك معنا في Course DZ. سنقوم بمراجعة طلبك والرد عليك في أقرب وقت.</p>
-                    
-                    <div class="success-details">
-                        <h4>
-                            <i class="fas fa-clipboard-list"></i>
-                            ملخص البيانات المرسلة
-                        </h4>
-                        <div id="successInfo"></div>
-                    </div>
-                    
-                    <div class="success-footer">
-                        <i class="fas fa-clock"></i>
-                        سيتم التواصل معك خلال 24-48 ساعة
-                    </div>
-
-                    <button class="back-btn" onclick="resetForm()">
-                        <i class="fas fa-redo"></i>
-                        تسجيل جديد
-                    </button>
+                </div>
+                <div class="member-names">
+                    <div class="member-name-item">AMANI</div>
+                    <div class="member-name-item">Ayoub</div>
                 </div>
             </div>
+            
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-mark">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="footer-info">
-                    <h4>Course DZ</h4>
-                    <p>منصة التدريب المهني</p>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="#home">الرئيسية</a>
-                <a href="#features">المميزات</a>
-                <a href="#testimonials">آراء المتدربين</a>
-                <a href="#register">التسجيل</a>
-            </div>
+        
+        <!-- الفوتر -->
+        <div class="footer">
+            جميع الحقوق محفوظة NewVision © 2026
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Course DZ. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- Toast -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle toast-icon"></i>
-        <span class="toast-message" id="toastMessage"></span>
+        
     </div>
-
+    
+    <!-- نافذة منبثقة لسجل أماني -->
+    <div class="modal-overlay" id="amaniModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('amani')">×</button>
+            <div class="modal-title">📋 سجل متابعة المشتركين 📋</div>
+            
+            <div class="record-item">
+                <div class="record-icon">👤</div>
+                <div class="record-text">
+                    <div class="record-label">الاسم</div>
+                    <div class="record-value">أماني</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📦</div>
+                <div class="record-text">
+                    <div class="record-label">نوع الباقة</div>
+                    <div class="record-value">الباقة الفضية</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📅</div>
+                <div class="record-text">
+                    <div class="record-label">مدة الغياب</div>
+                    <div class="record-value">منذ أسبوع</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📖</div>
+                <div class="record-text">
+                    <div class="record-label">الحالة الحالية</div>
+                    <div class="record-value">مازالت في مرحلة القراءة والمتابعة</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📊</div>
+                <div class="record-text">
+                    <div class="record-label">التقييم</div>
+                    <div class="record-value">تحتاج إلى متابعة وتحفيز للعودة للنشاط</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📝</div>
+                <div class="record-text">
+                    <div class="record-label">ملاحظة</div>
+                    <div class="record-value">يُفضل التواصل معها لإعادة التفاعل ومساعدتها على إكمال التقدم داخل الباقة.</div>
+                </div>
+            </div>
+            
+            <div class="record-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="record-status">
+                ✅ حالة السجل: قيد المتابعة
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة منبثقة لسجل محمد -->
+    <div class="modal-overlay" id="mohamedModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('mohamed')">×</button>
+            <div class="modal-title">📋 سجل متابعة المشتركين 📋</div>
+            
+            <div class="record-item">
+                <div class="record-icon">👤</div>
+                <div class="record-text">
+                    <div class="record-label">الاسم</div>
+                    <div class="record-value">محمد</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📦</div>
+                <div class="record-text">
+                    <div class="record-label">نوع الباقة</div>
+                    <div class="record-value">الباقة الذهبية</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📅</div>
+                <div class="record-text">
+                    <div class="record-label">مدة الغياب</div>
+                    <div class="record-value">منذ 3 أيام</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📖</div>
+                <div class="record-text">
+                    <div class="record-label">الحالة الحالية</div>
+                    <div class="record-value">نشط ومتابع بانتظام</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📊</div>
+                <div class="record-text">
+                    <div class="record-label">التقييم</div>
+                    <div class="record-value">ممتاز - يحتاج إلى تحفيز للاستمرار</div>
+                </div>
+            </div>
+            
+            <div class="record-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="record-status">
+                ✅ حالة السجل: نشط
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة منبثقة لسجل معتز -->
+    <div class="modal-overlay" id="moutazModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('moutaz')">×</button>
+            <div class="modal-title">📋 سجل متابعة المشتركين 📋</div>
+            
+            <div class="record-item">
+                <div class="record-icon">👤</div>
+                <div class="record-text">
+                    <div class="record-label">الاسم</div>
+                    <div class="record-value">معتز</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📦</div>
+                <div class="record-text">
+                    <div class="record-label">نوع الباقة</div>
+                    <div class="record-value">الباقة البرونزية</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📅</div>
+                <div class="record-text">
+                    <div class="record-label">مدة الغياب</div>
+                    <div class="record-value">منذ يومين</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📖</div>
+                <div class="record-text">
+                    <div class="record-label">الحالة الحالية</div>
+                    <div class="record-value">بدأ في مرحلة التطبيق العملي</div>
+                </div>
+            </div>
+            
+            <div class="record-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="record-status">
+                ✅ حالة السجل: قيد التقدم
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة منبثقة لسجل أيوب -->
+    <div class="modal-overlay" id="ayoubModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('ayoub')">×</button>
+            <div class="modal-title">📋 سجل متابعة المشتركين 📋</div>
+            
+            <div class="record-item">
+                <div class="record-icon">👤</div>
+                <div class="record-text">
+                    <div class="record-label">الاسم</div>
+                    <div class="record-value">أيوب</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📦</div>
+                <div class="record-text">
+                    <div class="record-label">نوع الباقة</div>
+                    <div class="record-value">الباقة الفضية</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📅</div>
+                <div class="record-text">
+                    <div class="record-label">مدة الغياب</div>
+                    <div class="record-value">منذ 5 أيام</div>
+                </div>
+            </div>
+            
+            <div class="record-item">
+                <div class="record-icon">📖</div>
+                <div class="record-text">
+                    <div class="record-label">الحالة الحالية</div>
+                    <div class="record-value">في مرحلة المراجعة والتدريب</div>
+                </div>
+            </div>
+            
+            <div class="record-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="record-status">
+                ✅ حالة السجل: قيد المراجعة
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Elements
-        const form = document.getElementById('registrationForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const successInfo = document.getElementById('successInfo');
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toastMessage');
-        const navbar = document.getElementById('navbar');
-
-        // Show toast
-        function showToast(message, type = 'success') {
-            toastMessage.textContent = message;
-            toast.className = `toast ${type} show`;
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        function openModal(member) {
+            document.getElementById(member + 'Modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
-        // Form submission
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-
-            try {
-                const formData = new FormData(form);
-                const now = new Date();
-                const requestId = 'CDZ-' + Date.now().toString().slice(-6);
-                
-                formData.append('تاريخ_الإرسال', now.toLocaleString('ar-DZ'));
-                formData.append('رقم_الطلب', requestId);
-
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    const data = Object.fromEntries(formData);
-                    
-                    // Build success info
-                    let html = `
-                        <div class="info-row">
-                            <span class="info-label">الاسم الكامل</span>
-                            <span class="info-value">${data['الاسم']} ${data['اللقب']}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">رقم الهاتف</span>
-                            <span class="info-value">${data['رقم_الهاتف']}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">الولاية</span>
-                            <span class="info-value">${data['الولاية']}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">المستوى الدراسي</span>
-                            <span class="info-value">${data['المستوى_الدراسي']}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">العمر</span>
-                            <span class="info-value">${data['العمر']} سنة</span>
-                        </div>
-                    `;
-                    
-                    if (data['البريد_الإلكتروني']) {
-                        html += `
-                            <div class="info-row">
-                                <span class="info-label">البريد الإلكتروني</span>
-                                <span class="info-value">${data['البريد_الإلكتروني']}</span>
-                            </div>
-                        `;
-                    }
-                    
-                    if (data['ملاحظات']) {
-                        html += `
-                            <div class="info-row">
-                                <span class="info-label">الملاحظات</span>
-                                <span class="info-value">${data['ملاحظات']}</span>
-                            </div>
-                        `;
-                    }
-                    
-                    html += `
-                        <div class="info-row">
-                            <span class="info-label">تاريخ الإرسال</span>
-                            <span class="info-value">${data['تاريخ_الإرسال']}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">رقم الطلب</span>
-                            <span class="info-value" style="color: var(--brand);">${data['رقم_الطلب']}</span>
-                        </div>
-                    `;
-
-                    successInfo.innerHTML = html;
-                    form.style.display = 'none';
-                    successMessage.classList.add('show');
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    showToast('تم إرسال بياناتك بنجاح!');
-                    
-                } else {
-                    throw new Error('Failed to send');
-                }
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showToast('حدث خطأ في الإرسال. الرجاء المحاولة مرة أخرى.', 'error');
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-            }
-        });
-
-        // Reset form
-        function resetForm() {
-            form.reset();
-            form.style.display = 'block';
-            successMessage.classList.remove('show');
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-            document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+        
+        function closeModal(member) {
+            document.getElementById(member + 'Modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // إغلاق النافذة عند النقر خارجها
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             });
         });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
     </script>
+    
 </body>
 </html>
