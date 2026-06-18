@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ISLAM CHOP</title>
+    <title>MIVARO SHOPPING — Premium Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -91,17 +91,24 @@
             gap: 10px;
         }
 
-        .app-logo-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        .app-logo-img-wrap {
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--navy);
-            font-size: 1rem;
-            box-shadow: 0 2px 8px rgba(201,168,76,0.3);
+            box-shadow: 0 2px 10px rgba(201,168,76,0.4);
+            border: 1.5px solid rgba(201,168,76,0.3);
+            background: linear-gradient(135deg, #1a1a2e, #0f172a);
+            flex-shrink: 0;
+        }
+        .app-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .app-logo-text {
@@ -1241,7 +1248,7 @@
 
         <!-- Status Bar -->
         <div class="status-bar">
-            <span>ISLAM CHOP</span>
+            <span style="font-family:Amiri,serif; font-weight:700; letter-spacing:1px;">MIVARO SHOPPING</span>
             <span><i class="fas fa-signal" style="margin-left:4px;"></i> <i class="fas fa-wifi" style="margin-left:4px;"></i> <i class="fas fa-battery-full"></i></span>
         </div>
 
@@ -1249,12 +1256,12 @@
         <header class="app-header" id="appHeader">
             <div class="app-header-inner">
                 <div class="app-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                    <div class="app-logo-icon">
-                        <i class="fas fa-crown"></i>
+                    <div class="app-logo-img-wrap">
+                        <img src="https://i.ibb.co/23jtYsBZ/Gemini-Generated-Image-lim9relim9relim9.png" alt="MS" class="app-logo-img">
                     </div>
                     <div>
-                        <div class="app-logo-text">ISLAM CHOP</div>
-                        <div class="app-logo-sub">FASHION DZ</div>
+                        <div class="app-logo-text">MIVARO SHOPPING</div>
+                        <div class="app-logo-sub">PREMIUM STORE</div>
                     </div>
                 </div>
                 <div class="app-header-actions">
@@ -1281,9 +1288,9 @@
         <div class="hero-carousel">
             <div class="hero-slide">
                 <div class="hero-slide-badge">
-                    <i class="fas fa-gem"></i> تجارة جزائرية أصيلة
+                    <i class="fas fa-gem"></i> تسوق مميز بأناقة
                 </div>
-                <h1>أزياء جزائرية <span>فاخرة</span></h1>
+                <h1>تشكيلة مميزة <span>فاخرة</span></h1>
                 <p>اكتشف تشكيلتنا المميزة من الملابس الجزائرية الأصيلة والعصرية</p>
                 <button class="hero-slide-btn" onclick="scrollToProducts()">
                     <i class="fas fa-shopping-bag"></i> تسوق الآن
@@ -1977,7 +1984,7 @@
             const total = cart.reduce((sum, item) => sum + item.price, 0);
             const date = new Date().toLocaleString('ar-DZ');
 
-            let message = `🛒 *طلب جديد من ISLAM CHOP* %0A`;
+            let message = `🛒 *طلب جديد من MIVARO SHOPPING* %0A`;
             message += `═══════════════════%0A%0A`;
             message += `📅 *التاريخ:* ${date}%0A`;
             message += `👤 *الاسم:* ${data.fullName}%0A`;
