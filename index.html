@@ -131,17 +131,26 @@ section{padding:90px 6%}
 /* ===== Products ===== */
 .products{background:linear-gradient(180deg,var(--cream),var(--blush) 120%)}
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:34px;max-width:1200px;margin:0 auto;
+  display:flex;gap:22px;max-width:1200px;margin:0 auto;
+  overflow-x:auto;padding:10px 4px 24px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--gold-light) transparent;
+  cursor:grab;
 }
+.grid.dragging{cursor:grabbing;scroll-snap-type:none}
+.grid::-webkit-scrollbar{height:8px}
+.grid::-webkit-scrollbar-track{background:#f6e7e4;border-radius:10px}
+.grid::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--gold-light),var(--gold));border-radius:10px}
+.swipe-hint{text-align:center;color:var(--gold);font-size:.85rem;letter-spacing:2px;margin:-10px auto 0;max-width:1200px}
 .card{
+  flex:0 0 235px;scroll-snap-align:start;
   background:#fff;border-radius:22px;overflow:hidden;
   box-shadow:0 10px 35px rgba(61,44,46,.08);
   transition:transform .45s ease, box-shadow .45s ease;
   position:relative;
 }
 .card:hover{transform:translateY(-12px);box-shadow:0 25px 55px rgba(201,138,146,.28)}
-.card .img-wrap{height:320px;overflow:hidden;position:relative}
+.card .img-wrap{height:255px;overflow:hidden;position:relative}
 .card .img-wrap::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 60%,rgba(253,248,245,.9));
@@ -351,6 +360,7 @@ footer a:hover{color:var(--gold-light)}
   .video-overlay-text h2{font-size:1.9rem}
 }
 </style>
+<base target="_blank">
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
@@ -629,6 +639,173 @@ footer a:hover{color:var(--gold-light)}
       </div>
     </div>
   </div>
+  <div class="swipe-hint">⟵ اسحبي لليسار لاستكشاف كل العطور ⟶</div>
+</section>
+
+<!-- ===== إصدارات 280 ألف — تكملة ===== -->
+<section class="products" id="products-280" style="padding-top:30px">
+  <div class="section-head reveal">
+    <div class="kicker">EXCLUSIVE 280</div>
+    <h2>إصدارات حصرية ✦ 280 ألف</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="grid">
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">جديد</span>
+        <img src="https://i.ibb.co/nMzRwDyf/Gemini-Generated-Image-93ql9k93ql9k93ql.jpg" alt="عطر همس اللافندر">
+      </div>
+      <div class="card-body">
+        <h3>همس اللافندر</h3>
+        <div class="notes">لافندر فرنسي • مسك أبيض • خشب الأرز</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="280000">280 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">حصري</span>
+        <img src="https://i.ibb.co/m57NqPpt/Gemini-Generated-Image-7p60na7p60na7p60.jpg" alt="عطر عبق الرمان">
+      </div>
+      <div class="card-body">
+        <h3>عبق الرمان</h3>
+        <div class="notes">رمان • ورد دمشقي • عنبر ذهبي</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="280000">280 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">جديد</span>
+        <img src="https://i.ibb.co/8DKdJv2F/Gemini-Generated-Image-o341jko341jko341.jpg" alt="عطر ضوء القمر">
+      </div>
+      <div class="card-body">
+        <h3>ضوء القمر</h3>
+        <div class="notes">مسك فضي • ياسمين • خشب الصندل</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="280000">280 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="swipe-hint">⟵ اسحبي لليسار لاستكشاف كل العطور ⟶</div>
+</section>
+
+<!-- ===== تشكيلة 190 ألف ===== -->
+<section class="products" id="products-190" style="padding-top:30px">
+  <div class="section-head reveal">
+    <div class="kicker">COLLECTION 190</div>
+    <h2>تشكيلة 190 ألف ✦ أنوثة في متناولكِ</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="grid">
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">الأكثر طلباً</span>
+        <img src="https://i.ibb.co/9Hyft7hD/Gemini-Generated-Image-ln46zyln46zyln46.jpg" alt="عطر نسيم الياسمين">
+      </div>
+      <div class="card-body">
+        <h3>نسيم الياسمين</h3>
+        <div class="notes">ياسمين • زهر البرتقال • مسك</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">جديد</span>
+        <img src="https://i.ibb.co/gMF3xhzV/Gemini-Generated-Image-3k4np3k4np3k4np3.jpg" alt="عطر ورد الصحراء">
+      </div>
+      <div class="card-body">
+        <h3>ورد الصحراء</h3>
+        <div class="notes">ورد طائفي • عود خفيف • فانيليا</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">حصري</span>
+        <img src="https://i.ibb.co/rfcVk9wS/Gemini-Generated-Image-jdharkjdharkjdha.jpg" alt="عطر همس البرغموت">
+      </div>
+      <div class="card-body">
+        <h3>همس البرغموت</h3>
+        <div class="notes">برغموت • نيرولي • مسك أبيض</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">جديد</span>
+        <img src="https://i.ibb.co/BK4VPqrB/Gemini-Generated-Image-5wetsz5wetsz5wet.jpg" alt="عطر أزهار الفجر">
+      </div>
+      <div class="card-body">
+        <h3>أزهار الفجر</h3>
+        <div class="notes">فل أبيض • ياسمين • زهر الليمون</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">الأنعم</span>
+        <img src="https://i.ibb.co/j9W6P1K8/Gemini-Generated-Image-ojgv6dojgv6dojgv.jpg" alt="عطر عناق الفانيليا">
+      </div>
+      <div class="card-body">
+        <h3>عناق الفانيليا</h3>
+        <div class="notes">فانيليا مدغشقر • كراميل • مسك</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">حصري</span>
+        <img src="https://i.ibb.co/BVbYTNWF/Gemini-Generated-Image-74mne274mne274mn.jpg" alt="عطر ندى العنبر">
+      </div>
+      <div class="card-body">
+        <h3>ندى العنبر</h3>
+        <div class="notes">عنبر ناعم • خشب الصندل • بتشولي</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="img-wrap">
+        <span class="badge">جديد</span>
+        <img src="https://i.ibb.co/rGpPFmyS/Gemini-Generated-Image-9rn4kp9rn4kp9rn4.jpg" alt="عطر همس المسك">
+      </div>
+      <div class="card-body">
+        <h3>همس المسك</h3>
+        <div class="notes">مسك أبيض • قطن • لافندر ناعم</div>
+        <div class="stars">★★★★★</div>
+        <div class="price" data-price="190000">190 الف</div>
+        <button class="add-btn">شراء ✦</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="swipe-hint">⟵ اسحبي لليسار لاستكشاف كل العطور ⟶</div>
 </section>
 
 <!-- ===== About ===== -->
@@ -789,7 +966,7 @@ footer a:hover{color:var(--gold-light)}
       <h4>تواصلي معنا</h4>
       <a href="#">📱 +966 5X XXX XXXX</a>
       <a href="#">✉️ hello@elegantperfume.com</a>
-      <a href="#">📍 الرياض، المملكة العربية السعودية</a>
+      <a href="#">📍 الجزائر</a>
     </div>
   </div>
   <div class="f-bottom">© 2026 <span class="en">ELEGANT PERFUME</span> — جميع الحقوق محفوظة ✦ صُنع بحب للأناقة</div>
@@ -819,6 +996,24 @@ document.addEventListener('click',unmuteOnce,{once:true});
 const vstyle=document.createElement('style');
 vstyle.textContent='#heroVideo::-webkit-media-controls{display:none!important}#heroVideo::-moz-media-controls{display:none!important}';
 document.head.appendChild(vstyle);
+
+// ===== Drag to scroll للشبكات (كمبيوتر + لمس) ===== */
+document.querySelectorAll('.grid').forEach(grid=>{
+  let isDown=false,startX=0,startScroll=0;
+  grid.addEventListener('pointerdown',e=>{
+    isDown=true;startX=e.clientX;startScroll=grid.scrollLeft;
+    grid.classList.add('dragging');
+    grid.setPointerCapture(e.pointerId);
+  });
+  grid.addEventListener('pointermove',e=>{
+    if(!isDown)return;
+    grid.scrollLeft=startScroll-(e.clientX-startX);
+  });
+  const endDrag=()=>{isDown=false;grid.classList.remove('dragging')};
+  grid.addEventListener('pointerup',endDrag);
+  grid.addEventListener('pointercancel',endDrag);
+  grid.addEventListener('pointerleave',endDrag);
+});
 
 // header shadow on scroll
 const header=document.getElementById('header');
