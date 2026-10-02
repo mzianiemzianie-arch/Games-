@@ -175,31 +175,14 @@ section{padding:90px 5%;position:relative}
 /* ---------- Product ---------- */
 #product{background:linear-gradient(180deg,#fbf7f1,#f5ede2 60%,#fbf7f1)}
 .product-wrap{
-  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start;
   max-width:1150px;margin:0 auto;
-}
-.product-img-box{position:relative}
-.product-img-box::before{
-  content:'';position:absolute;inset:-14px;
-  border:1px solid rgba(212,175,122,.35);border-radius:22px;
-  transform:rotate(-1.6deg);
-}
-.product-img-box img{
-  width:100%;border-radius:18px;display:block;
-  box-shadow:0 30px 70px rgba(0,0,0,.65), 0 0 0 1px rgba(212,175,122,.2);
-}
-.badge{
-  position:absolute;top:-18px;left:-14px;z-index:3;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:var(--black);font-weight:900;font-size:14px;
-  padding:10px 20px;border-radius:40px;transform:rotate(-6deg);
-  box-shadow:0 10px 24px rgba(212,175,122,.4);
 }
 .product-info h3{
   font-family:'Amiri',serif;font-size:clamp(24px,3.4vw,36px);color:#b3792f;
 }
 .stars{color:#d19a3f;font-size:20px;letter-spacing:4px;margin:12px 0}
-.price-row{display:flex;align-items:baseline;gap:16px;margin:14px 0 22px}
+.price-row{display:flex;align-items:baseline;gap:16px;margin:14px 0 22px;flex-wrap:wrap}
 .price{
   font-family:'Marcellus',serif;font-size:clamp(34px,5vw,52px);
   color:#c08a3e;text-shadow:0 0 24px rgba(212,175,122,.3);
@@ -247,6 +230,51 @@ section{padding:90px 5%;position:relative}
 .trust{margin-top:22px;display:flex;gap:22px;flex-wrap:wrap;color:#a89a86;font-size:13px}
 .trust span::before{content:'✓';color:var(--gold);margin-left:6px;font-weight:700}
 
+/* ---------- شبكة المتجر: صورتان في كل صف (مثل لقطة الشاشة) ---------- */
+.shop-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;   /* صورتان جنب بعض */
+  gap:14px;
+  position:relative;
+}
+.shop-grid::before{
+  content:'';position:absolute;inset:-14px;
+  border:1px solid rgba(212,175,122,.35);border-radius:22px;
+  transform:rotate(-1.6deg);pointer-events:none;
+}
+.shop-item{
+  background:#fff;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(179,121,47,.3);
+  box-shadow:0 12px 28px rgba(90,60,30,.1);
+  cursor:pointer;transition:.35s;
+  position:relative;
+}
+.shop-item:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 20px 40px rgba(90,60,30,.2);
+}
+.shop-item img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;display:block;
+}
+.shop-item-name{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;font-size:14px;font-weight:700;color:#46352a;
+  font-family:'Cairo';
+}
+.shop-item-name .arrow{
+  color:var(--gold);font-size:20px;transition:.3s;font-weight:400;
+}
+.shop-item:hover .shop-item-name{color:#b3792f}
+.shop-item:hover .arrow{transform:translateX(-5px)}
+.badge{
+  position:absolute;top:-18px;left:-14px;z-index:3;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--black);font-weight:900;font-size:14px;
+  padding:10px 20px;border-radius:40px;transform:rotate(-6deg);
+  box-shadow:0 10px 24px rgba(212,175,122,.4);
+}
+
 /* ---------- Gallery cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;max-width:1150px;margin:0 auto}
 .card{
@@ -272,8 +300,6 @@ section{padding:90px 5%;position:relative}
 .card h4{color:#b3792f;font-size:19px;margin-bottom:10px;font-family:'Amiri',serif}
 .card p{color:#7a6752;font-size:14px;line-height:1.9}
 
-/* ---------- Testimonials ---------- */
-
 /* ---------- Order form ---------- */
 #order{background:
   radial-gradient(ellipse at 50% 0%, rgba(212,175,122,.22), transparent 62%), #fbf7f1}
@@ -298,7 +324,7 @@ section{padding:90px 5%;position:relative}
 .field input,.field select,.field textarea{
   width:100%;background:#fdfaf5;
   border:1px solid rgba(179,121,47,.45);
-  border-radius:12px;padding:14px 16px;color:var(--cream);
+  border-radius:12px;padding:14px 16px;
   font-family:'Cairo';font-size:15px;transition:.3s;outline:none;color:#2e211a;
 }
 .field input:focus,.field select:focus,.field textarea:focus{
@@ -337,22 +363,6 @@ footer .socials a{
 footer .socials a:hover{background:var(--gold);color:var(--black);transform:translateY(-4px)}
 footer small{color:#8a7d6d;font-size:13px}
 
-/* ---------- Floating WhatsApp ---------- */
-.wa-float{
-  position:fixed;bottom:24px;left:24px;z-index:800;
-  width:58px;height:58px;border-radius:50%;
-  background:linear-gradient(135deg,#25d366,#128c7e);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 26px rgba(18,140,126,.5);
-  transition:.3s;animation:waPulse 2.4s ease-in-out infinite;
-}
-@keyframes waPulse{0%,100%{box-shadow:0 10px 26px rgba(18,140,126,.5)}50%{box-shadow:0 10px 40px rgba(37,211,102,.8)}}
-.wa-float:hover{transform:scale(1.12)}
-.wa-float svg{width:30px;height:30px;fill:#fff}
-
-
-
-
 /* ---------- Order Info Modal ---------- */
 .modal-overlay{
   position:fixed;inset:0;z-index:1500;
@@ -382,57 +392,25 @@ footer small{color:#8a7d6d;font-size:13px}
 }
 .modal h3{font-family:'Amiri',serif;color:#b3792f;font-size:26px;margin-bottom:4px}
 .modal .m-sub{color:#7a6752;font-size:13.5px;margin-bottom:22px}
-.m-info{
-  text-align:right;background:rgba(179,121,47,.1);
-  border:1px solid rgba(212,175,122,.22);border-radius:14px;
-  padding:18px 20px;margin-bottom:20px;
+
+/* ملخص الطلب داخل النافذة */
+.m-summary{
+  display:flex;align-items:center;gap:14px;text-align:right;
+  background:rgba(179,121,47,.08);
+  border:1px solid rgba(212,175,122,.25);border-radius:14px;
+  padding:12px 16px;margin-bottom:20px;
 }
-.m-info div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed rgba(212,175,122,.18);font-size:14.5px}
-.m-info div:last-child{border-bottom:none}
-.m-info b{color:var(--gold-light)}
-.m-info span{color:#5c4b3c}
+.m-summary img{
+  width:58px;height:58px;object-fit:cover;border-radius:10px;
+  border:1px solid rgba(212,175,122,.4);flex-shrink:0;
+}
+.m-summary .s-name{color:#46352a;font-weight:700;font-size:14.5px}
+.m-summary .s-detail{color:#8f7c66;font-size:12.5px;margin-top:2px}
+.m-summary .s-price{
+  margin-right:auto;font-family:'Marcellus',serif;
+  color:#c08a3e;font-size:20px;white-space:nowrap;
+}
 .m-price{font-family:'Marcellus',serif;font-size:30px;color:#c08a3e;margin:6px 0 18px;text-shadow:0 0 18px rgba(212,175,122,.35)}
-.modal .btn-gold{display:block;text-align:center}
-.modal .m-form-link{display:inline-block;margin-top:14px;color:#c9b9a4;font-size:13.5px;text-decoration:none;border-bottom:1px dashed rgba(212,175,122,.5);padding-bottom:2px;transition:.3s}
-.modal .m-form-link:hover{color:var(--gold-light)}
-
-
-/* ---------- Product Shopping Slider ---------- */
-.slider{
-  position:relative;overflow:hidden;border-radius:18px;
-  box-shadow:0 30px 70px rgba(90,60,30,.25), 0 0 0 1px rgba(179,121,47,.25);
-  touch-action:pan-y;background:#fff;
-}
-.slider-track{
-  display:flex;transition:transform .55s cubic-bezier(.2,.8,.3,1);
-  cursor:grab;will-change:transform;
-}
-.slider-track.dragging{transition:none;cursor:grabbing}
-.slide{
-  width:100%;flex-shrink:0;display:block;user-select:none;
-  -webkit-user-drag:none;pointer-events:none;
-}
-.slider-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
-  width:46px;height:46px;border-radius:50%;cursor:pointer;
-  background:rgba(255,255,255,.92);border:1px solid rgba(179,121,47,.45);
-  color:#b3792f;font-size:19px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 22px rgba(90,60,30,.25);transition:.3s;
-}
-.slider-arrow:hover{background:#b3792f;color:#fff}
-.slider-arrow.prev{right:14px}
-.slider-arrow.next{left:14px}
-.slider-dots{
-  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:3;
-  display:flex;gap:8px;background:rgba(255,255,255,.8);
-  padding:7px 12px;border-radius:30px;backdrop-filter:blur(6px);
-}
-.slider-dots span{
-  width:9px;height:9px;border-radius:50%;cursor:pointer;
-  background:rgba(179,121,47,.3);transition:.35s;
-}
-.slider-dots span.active{background:#b3792f;width:26px;border-radius:10px}
-
 
 /* ---------- Classic bags ---------- */
 #classic{background:linear-gradient(180deg,#fbf7f1,#f5ede2 60%,#fbf7f1)}
@@ -460,8 +438,6 @@ footer small{color:#8a7d6d;font-size:13px}
   .order-box{padding:38px 24px}
 }
 </style>
-<base target="_blank">
-<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -497,7 +473,7 @@ footer small{color:#8a7d6d;font-size:13px}
     <div class="divider"><span></span><i>✦</i><span></span></div>
     <p>حقائب يد نسائية بتصميم ملكي، جلد لامع مبطّن بغرزٍ متقنة وتفاصيل ذهبية تخطف الأنظار. قطعة واحدة تكفي لتتألقي في كل مناسبة.</p>
     <div class="hero-btns">
-      <a href="#" class="btn btn-gold" onclick="openOrderModal(event)">اطلبي الآن — 1700 دج</a>
+      <a href="#" class="btn btn-gold" onclick="openOrderModal(event,'الحقيبة الملكية',1700,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">اطلبي الآن — 1700 دج</a>
       <a href="#product" class="btn btn-outline">اكتشفي المنتج</a>
     </div>
   </div>
@@ -522,21 +498,35 @@ footer small{color:#8a7d6d;font-size:13px}
     <h2>الحقيبة الملكية</h2>
   </div>
   <div class="product-wrap reveal">
-    <div class="product-img-box">
+
+    <!-- ===== شبكة المتجر: صورتان في كل صف (نفس نظام لقطة الشاشة) ===== -->
+    <div style="position:relative">
       <div class="badge">عرض خاص</div>
-      <div class="slider" id="slider">
-        <div class="slider-track" id="sliderTrack">
-          <img src="https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png" class="slide" alt="حقيبة ABDU REVEN — صورة 1" draggable="false">
-          <img src="https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png" class="slide" alt="حقيبة ABDU REVEN — صورة 2" draggable="false">
-          <img src="https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png" class="slide" alt="حقيبة ABDU REVEN — صورة 3" draggable="false">
-          <img src="https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png" class="slide" alt="حقيبة ABDU REVEN — صورة 4" draggable="false">
-          <img src="https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png" class="slide" alt="حقيبة ABDU REVEN — صورة 5" draggable="false">
+      <div class="shop-grid">
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أزرق',1700,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">
+          <img src="https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png" alt="الحقيبة الملكية — أزرق">
+          <div class="shop-item-name"><span>الحقيبة الملكية — أزرق</span><span class="arrow">›</span></div>
         </div>
-        <button class="slider-arrow prev" onclick="moveSlide(1)" aria-label="التالي">❮</button>
-        <button class="slider-arrow next" onclick="moveSlide(-1)" aria-label="السابق">❯</button>
-        <div class="slider-dots" id="sliderDots"></div>
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أبيض',1700,'https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png')">
+          <img src="https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png" alt="الحقيبة الملكية — أبيض">
+          <div class="shop-item-name"><span>الحقيبة الملكية — أبيض</span><span class="arrow">›</span></div>
+        </div>
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أسود',1700,'https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png')">
+          <img src="https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png" alt="الحقيبة الملكية — أسود">
+          <div class="shop-item-name"><span>الحقيبة الملكية — أسود</span><span class="arrow">›</span></div>
+        </div>
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — عنابي',1700,'https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png')">
+          <img src="https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png" alt="الحقيبة الملكية — عنابي">
+          <div class="shop-item-name"><span>الحقيبة الملكية — عنابي</span><span class="arrow">›</span></div>
+        </div>
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — بيج',1700,'https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png')">
+          <img src="https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png" alt="الحقيبة الملكية — بيج">
+          <div class="shop-item-name"><span>الحقيبة الملكية — بيج</span><span class="arrow">›</span></div>
+        </div>
       </div>
     </div>
+    <!-- ===== نهاية شبكة المتجر ===== -->
+
     <div class="product-info">
       <h3>حقيبة يد نسائية — تصميم مطرّز فاخر</h3>
       <div class="stars">★★★★★ <small style="color:#a89a86;font-size:13px">(4.9 — تقييم عملائنا)</small></div>
@@ -545,7 +535,7 @@ footer small{color:#8a7d6d;font-size:13px}
         <span class="old-price">2800 DZ</span>
         <span class="save-tag">وفّري 1100 دج</span>
       </div>
-      <p>حقيبة يد نسائية بجلدٍ لامع فاخر، مبطّنة بغرزٍ هندسية متقنة ومزوّدة بمقابض أنيقة وإكسسوارات ذهبية تحمل شعار ABDU REVEN. متوفرة بثلاثة ألوان ملكية: الأزرق والأبيض والأسود.</p>
+      <p>حقيبة يد نسائية بجلدٍ لامع فاخر، مبطّنة بغرزٍ هندسية متقنة ومزوّدة بمقابض أنيقة وإكسسوارات ذهبية تحمل شعار ABDU REVEN. متوفرة بألوان ملكية متعددة.</p>
       <ul class="features">
         <li>جلد صناعي فاخر مقاوم للخدش والماء</li>
         <li>إكسسوارات ذهبية ثابتة لا تتغير مع الوقت</li>
@@ -558,7 +548,7 @@ footer small{color:#8a7d6d;font-size:13px}
           <input type="text" id="qty" value="1" readonly>
           <button onclick="changeQty(-1)">−</button>
         </div>
-        <button class="order-btn" onclick="openOrderModal(event)">اطلبي الآن ✦</button>
+        <button class="order-btn" onclick="openOrderModal(event,'الحقيبة الملكية',1700,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">اشترِ الآن ✦</button>
       </div>
       <div class="trust">
         <span>دفع عند الاستلام</span>
@@ -568,7 +558,6 @@ footer small{color:#8a7d6d;font-size:13px}
     </div>
   </div>
 </section>
-
 
 <!-- Classic bags -->
 <section id="classic">
@@ -581,19 +570,19 @@ footer small{color:#8a7d6d;font-size:13px}
       <img src="https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg" alt="الحقيبة الكلاسيكية — عنابي">
       <h4>الحقيبة الكلاسيكية — عنابي</h4>
       <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event)">اطلبي الآن ✦</button>
+      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — عنابي',1950,'https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg')">اشترِ الآن ✦</button>
     </div>
     <div class="card classic-card">
       <img src="https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg" alt="الحقيبة الكلاسيكية — بورجوندي">
       <h4>الحقيبة الكلاسيكية — بورجوندي</h4>
       <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event)">اطلبي الآن ✦</button>
+      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — بورجوندي',1950,'https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg')">اشترِ الآن ✦</button>
     </div>
     <div class="card classic-card">
       <img src="https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg" alt="الحقيبة الكلاسيكية — أسود">
       <h4>الحقيبة الكلاسيكية — أسود</h4>
       <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event)">اطلبي الآن ✦</button>
+      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — أسود',1950,'https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg')">اشترِ الآن ✦</button>
     </div>
   </div>
 </section>
@@ -678,14 +667,24 @@ footer small{color:#8a7d6d;font-size:13px}
   </div>
 </section>
 
-
 <!-- Order Modal -->
 <div class="modal-overlay" id="orderModal">
   <div class="modal">
     <button class="modal-close" onclick="closeOrderModal()">✕</button>
     <img class="m-logo" src="https://i.ibb.co/7JZpbbLS/Gemini-Generated-Image-jap4apjap4apjap4.jpg" alt="ABDU REVEN">
     <h3>أكملي طلبك الآن</h3>
-    <p class="m-sub">املئي المعلومات وسنتصل بك لتأكيد الطلب ✦ الدفع عند الاستلام</p>
+    <p class="m-sub">املئي قائمة المعلومات وسنتصل بك لتأكيد الطلب ✦ الدفع عند الاستلام</p>
+
+    <!-- ملخص المنتج المختار -->
+    <div class="m-summary">
+      <img id="mProductImg" src="https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png" alt="المنتج">
+      <div>
+        <div class="s-name" id="mProductName">الحقيبة الملكية</div>
+        <div class="s-detail" id="mProductDetail">اللون: أزرق ✦ الكمية: 1</div>
+      </div>
+      <div class="s-price" id="mPrice">1700 DZ</div>
+    </div>
+
     <form id="modalForm">
       <div class="field-row">
         <div class="field">
@@ -717,10 +716,6 @@ footer small{color:#8a7d6d;font-size:13px}
         <label>ملاحظات (اختياري)</label>
         <textarea id="mNotes" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
       </div>
-      <div class="field">
-        <label>الإجمالي</label>
-        <input type="text" id="mTotal" value="1700 DZ" readonly style="color:var(--gold);font-weight:700">
-      </div>
       <button type="submit" class="submit-btn">✦ تأكيد الطلب — الدفع عند الاستلام ✦</button>
       <div class="form-msg" id="modalMsg"></div>
     </form>
@@ -741,10 +736,6 @@ footer small{color:#8a7d6d;font-size:13px}
 </footer>
 
 <script>
-
-
-
-
 // Loader
 window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),900)});
 
@@ -777,17 +768,19 @@ function changeQty(d){
   document.getElementById('fTotal').value=(v*1700)+' DZ';
 }
 
-
 // ===== إرسال الطلبات إلى نموذج Google Forms — ABDU REVEN =====
 const GOOGLE_FORM = {
   actionURL: 'https://docs.google.com/forms/d/e/1FAIpQLSfQLii4LMsl8VoYb9GVaKyXMYGUKzbDE2Zf-Ey6jdCzFrDPXQ/formResponse',
   entry: 'entry.794946171'
 };
 
+let currentProduct = { name:'الحقيبة الملكية', price:1700, img:'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png' };
+
 function sendOrderToGoogleForm(order) {
   const msg =
 `✦ طلب جديد — ABDU REVEN ✦
 ────────────────
+📦 المنتج: ${order.product}
 👤 الاسم: ${order.name} ${order.last}
 📱 الهاتف: ${order.phone}
 🏙️ الولاية: ${order.wilaya}
@@ -803,7 +796,7 @@ function sendOrderToGoogleForm(order) {
 }
 // ===== نهاية كود Google Forms =====
 
-// Order form
+// Order form (قسم الطلب الكامل في الأسفل)
 document.getElementById('orderForm').addEventListener('submit',e=>{
   e.preventDefault();
   const name=document.getElementById('fName').value.trim();
@@ -817,8 +810,7 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
   const msg=document.getElementById('formMsg');
   if(!name||!last||!phone||!wilaya){msg.textContent='⚠ يرجى ملء جميع الحقول المطلوبة';return}
   if(!/^[0-9+\s]{9,}$/.test(phone)){msg.textContent='⚠ يرجى إدخال رقم هاتف صحيح';return}
-  // إرسال الطلب تلقائيًا إلى Google Forms
-  sendOrderToGoogleForm({ name, last, phone, wilaya, color, qty, total, notes });
+  sendOrderToGoogleForm({ product:currentProduct.name, name, last, phone, wilaya, color, qty, total, notes });
 
   msg.textContent='✦ شكراً '+name+'! تم إرسال طلبك بنجاح، سنتصل بك قريبًا ✦';
   msg.style.color='#7ee2a8';
@@ -826,60 +818,22 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
   document.getElementById('fTotal').value='1700 DZ';
 });
 
-
-// ===== Product Shopping Slider (RTL swipe) =====
-const track=document.getElementById('sliderTrack');
-const totalSlides=track.children.length;
-let slideIndex=0;
-
-const dotsBox=document.getElementById('sliderDots');
-for(let i=0;i<totalSlides;i++){
-  const d=document.createElement('span');
-  if(i===0)d.classList.add('active');
-  d.onclick=()=>goToSlide(i);
-  dotsBox.appendChild(d);
-}
-function updateSlider(){
-  track.style.transform=`translateX(${slideIndex*100}%)`;
-  dotsBox.querySelectorAll('span').forEach((d,i)=>d.classList.toggle('active',i===slideIndex));
-}
-function goToSlide(i){
-  slideIndex=Math.max(0,Math.min(totalSlides-1,i));
-  updateSlider();
-}
-function moveSlide(dir){ // dir=1 => التالي في RTL
-  goToSlide(slideIndex+dir);
-}
-
-let startX=0,currentX=0,dragging=false;
-function dragStart(x){dragging=true;startX=x;currentX=0;track.classList.add('dragging');}
-function dragMove(x){
-  if(!dragging)return;
-  currentX=x-startX;
-  track.style.transform=`translateX(calc(${slideIndex*100}% + ${currentX}px))`;
-}
-function dragEnd(){
-  if(!dragging)return;
-  dragging=false;
-  track.classList.remove('dragging');
-  if(currentX>60 && slideIndex<totalSlides-1) moveSlide(1);      // سحب لليمين => التالي
-  else if(currentX<-60 && slideIndex>0) moveSlide(-1);           // سحب لليسار => السابق
-  else updateSlider();
-}
-const sliderEl=document.getElementById('slider');
-sliderEl.addEventListener('mousedown',e=>{e.preventDefault();dragStart(e.clientX);});
-window.addEventListener('mousemove',e=>dragMove(e.clientX));
-window.addEventListener('mouseup',dragEnd);
-sliderEl.addEventListener('touchstart',e=>dragStart(e.touches[0].clientX),{passive:true});
-sliderEl.addEventListener('touchmove',e=>dragMove(e.touches[0].clientX),{passive:true});
-sliderEl.addEventListener('touchend',dragEnd);
-// ===== End Product Slider =====
-
 // ===== Order Modal =====
-function openOrderModal(e){
+function openOrderModal(e, productName, productPrice, productImg){
   if(e) e.preventDefault();
-  const qty=document.getElementById('qty').value;
-  document.getElementById('mTotal').value=(qty*1950)+' DZ';
+  if(productName) currentProduct.name = productName;
+  if(productPrice) currentProduct.price = productPrice;
+  if(productImg) currentProduct.img = productImg;
+
+  const qty = parseInt(document.getElementById('qty').value) || 1;
+  const total = currentProduct.price * qty;
+
+  // تحديث ملخص المنتج في أعلى النافذة
+  document.getElementById('mProductImg').src = currentProduct.img;
+  document.getElementById('mProductName').textContent = currentProduct.name;
+  document.getElementById('mProductDetail').textContent = 'الكمية: ' + qty + ' ✦ الدفع عند الاستلام';
+  document.getElementById('mPrice').textContent = total + ' DZ';
+
   document.getElementById('orderModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -894,6 +848,12 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape') closeOrderModal();
 });
 
+// تحديث اللون في الملخص عند تغييره
+document.getElementById('mColor').addEventListener('change',()=>{
+  const qty = parseInt(document.getElementById('qty').value) || 1;
+  document.getElementById('mProductDetail').textContent = 'اللون: ' + document.getElementById('mColor').value + ' ✦ الكمية: ' + qty;
+});
+
 // Modal form submit
 document.getElementById('modalForm').addEventListener('submit',e=>{
   e.preventDefault();
@@ -903,24 +863,21 @@ document.getElementById('modalForm').addEventListener('submit',e=>{
   const wilaya=document.getElementById('mWilaya').value.trim();
   const color=document.getElementById('mColor').value;
   const notes=document.getElementById('mNotes').value.trim();
-  const total=document.getElementById('mTotal').value;
   const qty=document.getElementById('qty').value;
+  const total=currentProduct.price*qty+' DZ';
   const msg=document.getElementById('modalMsg');
   if(!name||!last||!phone||!wilaya){msg.textContent='⚠ يرجى ملء جميع الحقول المطلوبة';msg.style.color='#e88';return}
   if(!/^[0-9+\s]{9,}$/.test(phone)){msg.textContent='⚠ يرجى إدخال رقم هاتف صحيح';msg.style.color='#e88';return}
-  // إرسال الطلب تلقائيًا إلى Google Forms
-  sendOrderToGoogleForm({ name, last, phone, wilaya, color, qty, total, notes });
+  sendOrderToGoogleForm({ product:currentProduct.name, name, last, phone, wilaya, color, qty, total, notes });
   msg.textContent='✦ شكراً '+name+'! تم إرسال طلبك بنجاح ✦';
   msg.style.color='#7ee2a8';
   setTimeout(()=>{
     closeOrderModal();
     e.target.reset();
     document.getElementById('modalMsg').textContent='';
-    document.getElementById('mTotal').value='1700 DZ';
   },2200);
 });
 // ===== End Order Modal =====
-
 </script>
 </body>
 </html>
