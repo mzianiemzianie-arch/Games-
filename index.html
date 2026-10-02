@@ -275,6 +275,46 @@ section{padding:90px 5%;position:relative}
   box-shadow:0 10px 24px rgba(212,175,122,.4);
 }
 
+/* ---------- السعر داخل بطاقة المنتج ---------- */
+.item-price{
+  font-family:'Marcellus',serif;color:#c08a3e;font-size:16px;white-space:nowrap;
+  text-shadow:0 0 14px rgba(212,175,122,.25);
+}
+
+/* ---------- زر الشراء الفاخر تحت كل صورة ---------- */
+.shop-buy{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:calc(100% - 24px);
+  margin:0 12px 14px;
+  padding:11px 10px;border:none;border-radius:40px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  color:var(--black);
+  font-family:'Cairo';font-weight:900;font-size:14.5px;
+  cursor:pointer;transition:.35s;
+  box-shadow:0 6px 18px rgba(212,175,122,.35);
+}
+.shop-buy::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.6),transparent);
+  animation:shine 3.2s ease-in-out infinite;
+}
+@keyframes shine{0%{left:-80%}55%{left:135%}100%{left:135%}}
+.shop-buy:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(212,175,122,.55);
+}
+.shop-buy:active{transform:translateY(-1px)}
+
+/* ---------- شبكة الحقائب الكلاسيكية (نفس ستايل الأعلى) ---------- */
+#classic{background:linear-gradient(180deg,#fbf7f1,#f5ede2 60%,#fbf7f1)}
+.classic-grid{
+  max-width:1150px;margin:0 auto;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.classic-grid::before{inset:-16px}
+
 /* ---------- Gallery cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;max-width:1150px;margin:0 auto}
 .card{
@@ -412,18 +452,6 @@ footer small{color:#8a7d6d;font-size:13px}
 }
 .m-price{font-family:'Marcellus',serif;font-size:30px;color:#c08a3e;margin:6px 0 18px;text-shadow:0 0 18px rgba(212,175,122,.35)}
 
-/* ---------- Classic bags ---------- */
-#classic{background:linear-gradient(180deg,#fbf7f1,#f5ede2 60%,#fbf7f1)}
-.classic-card img{
-  width:100%;border-radius:14px;margin-bottom:16px;display:block;
-  border:1px solid rgba(179,121,47,.25);
-}
-.classic-price{
-  font-family:'Marcellus',serif;font-size:26px;color:#b3792f;
-  margin:4px 0 18px;text-shadow:0 0 16px rgba(179,121,47,.25);
-}
-.classic-order{display:inline-block;padding:11px 36px;font-size:15px}
-
 /* ---------- Responsive ---------- */
 @media(max-width:560px){.field-row{grid-template-columns:1fr}}
 @media(max-width:900px){
@@ -436,8 +464,13 @@ footer small{color:#8a7d6d;font-size:13px}
   #menuBtn{display:block}
   header .cta-btn{display:none}
   .order-box{padding:38px 24px}
+  .classic-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .classic-grid{grid-template-columns:1fr}
 }
 </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -459,6 +492,7 @@ footer small{color:#8a7d6d;font-size:13px}
   <nav id="nav">
     <a href="#home">الرئيسية</a>
     <a href="#product">المنتج</a>
+    <a href="#classic">الكلاسيكية</a>
     <a href="#why">لماذا نحن</a>
     <a class="cta-btn" href="#" onclick="openOrderModal(event)">اطلب الآن</a>
   </nav>
@@ -503,25 +537,30 @@ footer small{color:#8a7d6d;font-size:13px}
     <div style="position:relative">
       <div class="badge">عرض خاص</div>
       <div class="shop-grid">
-        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أزرق',1700,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">
+        <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أزرق',2200,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">
           <img src="https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png" alt="الحقيبة الملكية — أزرق">
-          <div class="shop-item-name"><span>الحقيبة الملكية — أزرق</span><span class="arrow">›</span></div>
+          <div class="shop-item-name"><span>الحقيبة الملكية — أزرق</span><span class="item-price">2200 دج</span></div>
+          <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الملكية — أزرق',2200,'https://i.postimg.cc/byx8r3mQ/file-0000000088cc8210a63225f7ef0c9b49.png')">✦ اشترِ الآن</button>
         </div>
         <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أبيض',1700,'https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png')">
           <img src="https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png" alt="الحقيبة الملكية — أبيض">
-          <div class="shop-item-name"><span>الحقيبة الملكية — أبيض</span><span class="arrow">›</span></div>
+          <div class="shop-item-name"><span>الحقيبة الملكية — أبيض</span><span class="item-price">1700 دج</span></div>
+          <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الملكية — أبيض',1700,'https://i.postimg.cc/3rx6hB6q/file-000000009d188210b51b260a7f1ce803.png')">✦ اشترِ الآن</button>
         </div>
         <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — أسود',1700,'https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png')">
           <img src="https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png" alt="الحقيبة الملكية — أسود">
-          <div class="shop-item-name"><span>الحقيبة الملكية — أسود</span><span class="arrow">›</span></div>
+          <div class="shop-item-name"><span>الحقيبة الملكية — أسود</span><span class="item-price">1700 دج</span></div>
+          <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الملكية — أسود',1700,'https://i.postimg.cc/gmr5Bgvb/file-000000009b0c820a99b2bf595ba06b9e.png')">✦ اشترِ الآن</button>
         </div>
         <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — عنابي',1700,'https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png')">
           <img src="https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png" alt="الحقيبة الملكية — عنابي">
-          <div class="shop-item-name"><span>الحقيبة الملكية — عنابي</span><span class="arrow">›</span></div>
+          <div class="shop-item-name"><span>الحقيبة الملكية — عنابي</span><span class="item-price">1700 دج</span></div>
+          <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الملكية — عنابي',1700,'https://i.postimg.cc/XjQHs5JD/file-00000000f1588210bb01a70d39288910.png')">✦ اشترِ الآن</button>
         </div>
         <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الملكية — بيج',1700,'https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png')">
-          <img src="https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png" alt="الحقيبة الملكية — بيج">
-          <div class="shop-item-name"><span>الحقيبة الملكية — بيج</span><span class="arrow">›</span></div>
+          <img src="https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png" alt="الحقيبة الملكية — بني">
+          <div class="shop-item-name"><span>الحقيبة الملكية — بيج</span><span class="item-price">1700 دج</span></div>
+          <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الملكية — بيج',1700,'https://i.postimg.cc/mBvsYvKN/file-00000000ee748210b1757ed6aeab4407.png')">✦ اشترِ الآن</button>
         </div>
       </div>
     </div>
@@ -559,30 +598,27 @@ footer small{color:#8a7d6d;font-size:13px}
   </div>
 </section>
 
-<!-- Classic bags -->
+<!-- Classic bags — نفس ستايل الشبكة العلوية -->
 <section id="classic">
   <div class="section-head reveal">
     <div class="mini">CLASSIC COLLECTION</div>
     <h2>تشكيلة الحقائب الكلاسيكية</h2>
   </div>
-  <div class="cards reveal">
-    <div class="card classic-card">
+  <div class="shop-grid classic-grid reveal">
+    <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — عنابي',1950,'https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg')">
       <img src="https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg" alt="الحقيبة الكلاسيكية — عنابي">
-      <h4>الحقيبة الكلاسيكية — عنابي</h4>
-      <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — عنابي',1950,'https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg')">اشترِ الآن ✦</button>
+      <div class="shop-item-name"><span>الحقيبة الكلاسيكية — عنابي</span><span class="item-price">1950 دج</span></div>
+      <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الكلاسيكية — عنابي',1950,'https://i.ibb.co/v4ZNq203/Gemini-Generated-Image-mnq533mnq533mnq5.jpg')">✦ اشترِ الآن</button>
     </div>
-    <div class="card classic-card">
+    <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — بورجوندي',1950,'https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg')">
       <img src="https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg" alt="الحقيبة الكلاسيكية — بورجوندي">
-      <h4>الحقيبة الكلاسيكية — بورجوندي</h4>
-      <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — بورجوندي',1950,'https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg')">اشترِ الآن ✦</button>
+      <div class="shop-item-name"><span>الحقيبة الكلاسيكية — بورجوندي</span><span class="item-price">1950 دج</span></div>
+      <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الكلاسيكية — بورجوندي',1950,'https://i.ibb.co/xtRv6M88/Gemini-Generated-Image-vcyiqivcyiqivcyi.jpg')">✦ اشترِ الآن</button>
     </div>
-    <div class="card classic-card">
+    <div class="shop-item" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — أسود',1950,'https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg')">
       <img src="https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg" alt="الحقيبة الكلاسيكية — أسود">
-      <h4>الحقيبة الكلاسيكية — أسود</h4>
-      <div class="classic-price">1950 DZ</div>
-      <button class="btn btn-gold classic-order" onclick="openOrderModal(event,'الحقيبة الكلاسيكية — أسود',1950,'https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg')">اشترِ الآن ✦</button>
+      <div class="shop-item-name"><span>الحقيبة الكلاسيكية — أسود</span><span class="item-price">1950 دج</span></div>
+      <button class="shop-buy" onclick="event.stopPropagation();openOrderModal(event,'الحقيبة الكلاسيكية — أسود',1950,'https://i.ibb.co/rKmnGn2x/Gemini-Generated-Image-305k47305k47305k.jpg')">✦ اشترِ الآن</button>
     </div>
   </div>
 </section>
